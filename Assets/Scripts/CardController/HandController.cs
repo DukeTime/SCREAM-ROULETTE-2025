@@ -28,6 +28,19 @@ public class HandController : MonoBehaviour, IService
 
     private void Update()
     {
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+
+        // if (hit.collider != null && hit.collider.CompareTag("Card"))
+        //     foreach (GameObject card in cardsInHand)
+        //         if (card == hit.collider.gameObject)
+        //             card.GetComponent<MovebleSmoothDump>().SelectedView();
+        //         else
+        //             card.GetComponent<MovebleSmoothDump>().SelectedUnview();
+        // else
+        //     foreach (GameObject card in cardsInHand)
+        //         card.GetComponent<MovebleSmoothDump>().SelectedUnview();
+        
         if (Input.GetMouseButtonDown(0))
         {
             TryDrawCard();
@@ -52,6 +65,7 @@ public class HandController : MonoBehaviour, IService
         GameObject newCard = Instantiate(cardPrefab, deckPosition.position, Quaternion.identity);
         cardsInHand.Add(newCard);
         StartCoroutine(ArrangeCards());
+        StartCoroutine(CardPickAnim());
     }
 
     // Анимация распределения карт
@@ -65,7 +79,7 @@ public class HandController : MonoBehaviour, IService
 
         for (int i = 0; i < cardsInHand.Count; i++)
         {
-            if (!cardsInHand[i].GetComponent<MovebleSmoothDump>().isHolding)
+            if (!(cardsInHand[i].GetComponent<MovebleSmoothDump>().isHolding || cardsInHand[i].GetComponent<MovebleSmoothDump>().isSelected))
                 cardsToMove.Add(cardsInHand[i]);
         }
         for (int i = 0; i < cardsToMove.Count; i++)
@@ -156,15 +170,10 @@ public class HandController : MonoBehaviour, IService
             // Плавный поворот с учетом Z-порядка
             Quaternion targetQuat = Quaternion.Euler(0, 0, targetRotation);
             card.transform.rotation = Quaternion.Lerp(startRot, targetQuat, t);
-            
-            // Небольшая анимация подъема карты
-            float yOffset = Mathf.Sin(t * Mathf.PI) * 0.5f;
-            card.transform.position += Vector3.up * yOffset;
 
             yield return null;
         }
         
-        card.GetComponent<MovebleSmoothDump>().globalTargetPosition = targetPos;
         if(collider != null) collider.enabled = true;
     }
 
@@ -177,5 +186,23 @@ public class HandController : MonoBehaviour, IService
                 return true;
         }
         return false;
+    }
+
+    private IEnumerator CardPickAnim()
+    {
+        float t = 0;
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime * moveSpeed;
+            foreach (GameObject card in cardsInHand)
+            {
+                // Небольшая анимация подъема карты
+                float yOffset = Mathf.Sin(t * Mathf.PI) * 0.5f;
+                card.transform.position += Vector3.up * yOffset;
+            }
+
+            yield return null;
+        }
     }
 }
