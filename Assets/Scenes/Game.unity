@@ -698,12 +698,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 577dc5a924db42e2828d5c85390ad0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxArcAngle: 60
+  maxArcAngle: 45
   cardSpacing: 10
-  rotationAngle: -15
+  minCardSpacing: 1
   rotationOffset: 0
   verticalOffset: 0
-  moveSpeed: 5
+  moveSpeed: 4
+  handPow: 0.02
   handCenter: {x: 0, y: -3}
   deckPosition: {fileID: 448793738}
   cardPrefab: {fileID: 6818658193959556972, guid: 44072ab2549f6da49beee0349c0ad070, type: 3}

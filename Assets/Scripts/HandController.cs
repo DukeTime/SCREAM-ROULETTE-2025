@@ -1,22 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class HandController : MonoBehaviour
+public class HandController : MonoBehaviour, IService
 {
     [Header("Settings")]
     [SerializeField] private float maxArcAngle = 60f; // Градус дуги (от -180 до 180)
     [SerializeField] private float cardSpacing = 5f; // Расстояние между картами
-    [SerializeField] private float rotationAngle = 30f; // Максимальный угол поворота
+    [SerializeField] private float minCardSpacing = 5f; // Расстояние между картами
     [SerializeField] private float rotationOffset = 90f;
     [SerializeField] private float verticalOffset = 0.5f; // Вертикальное смещение
     [SerializeField] private float moveSpeed = 8f; // Скорость перемещения карт
+    [SerializeField] private float handPow = 2f; 
     [SerializeField] private Vector2 handCenter = new Vector2(0, -4f); // Центр области руки
     [SerializeField] private Transform deckPosition; // Позиция колоды
 
     public GameObject cardPrefab;
     private List<GameObject> cardsInHand = new List<GameObject>();
-    private bool isAnimating;
+    // private bool isAnimating;
+
+    private void Start()
+    {
+        ServiceLocator.Initialize();
+        ServiceLocator.Current.Register<HandController>(this);
+    }
 
     private void Update()
     {
@@ -47,30 +55,45 @@ public class HandController : MonoBehaviour
     }
 
     // Анимация распределения карт
-    private IEnumerator ArrangeCards()
+    public IEnumerator ArrangeCards()
     {
-        isAnimating = true;
+        // isAnimating = true;
         List<Vector3> targetPositions = CalculateCardPositions();
         List<float> targetRotations = CalculateCardRotations();
+        
+        List<GameObject> cardsToMove = new List<GameObject>();
 
         for (int i = 0; i < cardsInHand.Count; i++)
         {
-            StartCoroutine(MoveCardToPosition(cardsInHand[i], targetPositions[i], targetRotations[i]));
+            if (!cardsInHand[i].GetComponent<MovebleSmoothDump>().isHolding)
+                cardsToMove.Add(cardsInHand[i]);
+        }
+        for (int i = 0; i < cardsToMove.Count; i++)
+        {
+            StartCoroutine(MoveCardToPosition(cardsToMove[i], targetPositions[i], targetRotations[i]));
         }
 
         yield return new WaitUntil(() => !IsAnyCardMoving());
-        isAnimating = false;
+        // isAnimating = false;
     }
 
     private List<Vector3> CalculateCardPositions()
     {
         List<Vector3> positions = new List<Vector3>();
-        int count = cardsInHand.Count;
+        List<GameObject> cardsToMove = new List<GameObject>();
+        
+        for (int i = 0; i < cardsInHand.Count; i++)
+        {
+            if (!cardsInHand[i].GetComponent<MovebleSmoothDump>().isHolding)
+                cardsToMove.Add(cardsInHand[i]);
+        }
+        
+        int count = cardsToMove.Count;
         
         if(count == 0) return positions;
         
         // Автоматически рассчитываем расстояние между картами
-        float spread = Mathf.Min(cardSpacing, (count - 1) * 0.8f);
+        float spread = (count - 1) * Mathf.Min(minCardSpacing, cardSpacing / cardsToMove.Count);
         float startX = -spread / 2;
         float step = (count > 1) ? spread / (count - 1) : 0;
 
@@ -78,8 +101,8 @@ public class HandController : MonoBehaviour
         {
             float x = handCenter.x + startX + i * step;
             // Параболическая формула для вертикального смещения
-            float y = handCenter.y - Mathf.Pow(x - handCenter.x, 2) * 0.1f + verticalOffset;
-            positions.Add(new Vector3(x, y, i * 0.01f)); // Z для порядка отрисовки
+            float y = handCenter.y - Mathf.Pow(x - handCenter.x, 2) * handPow + verticalOffset;
+            positions.Add(new Vector3(x, y, 1 - i * 0.01f)); // Z для порядка отрисовки
         }
 
         return positions;
@@ -88,8 +111,15 @@ public class HandController : MonoBehaviour
     private List<float> CalculateCardRotations()
     {
         List<float> rotations = new List<float>();
-        int cardCount = cardsInHand.Count;
+        List<GameObject> cardsToMove = new List<GameObject>();
         
+        for (int i = 0; i < cardsInHand.Count; i++)
+        {
+            if (!cardsInHand[i].GetComponent<MovebleSmoothDump>().isHolding)
+                cardsToMove.Add(cardsInHand[i]);
+        }
+        
+        int cardCount = cardsToMove.Count;
         if(cardCount == 0) return rotations;
 
         float totalAngle = Mathf.Clamp(maxArcAngle, 10f, 360f);
@@ -133,7 +163,8 @@ public class HandController : MonoBehaviour
 
             yield return null;
         }
-
+        
+        card.GetComponent<MovebleSmoothDump>().globalTargetPosition = targetPos;
         if(collider != null) collider.enabled = true;
     }
 
