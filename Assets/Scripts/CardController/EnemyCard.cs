@@ -1,9 +1,11 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class EnemyCard : MonoBehaviour
 {
-    public CardInfo cardInfo = new CardInfo();
+    public CardInfo cardInfo;
+    
     
     public enum EnemyCardState
     {
@@ -15,6 +17,7 @@ public class EnemyCard : MonoBehaviour
     
     void Start()
     {
+        cardInfo = GetComponent<CardInfo>();
     }
 
     void Update()

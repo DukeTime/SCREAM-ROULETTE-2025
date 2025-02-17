@@ -15,55 +15,22 @@ public class HandController : MonoBehaviour, IService
     [SerializeField] private float handPow = 2f; 
     [SerializeField] private Vector2 handCenter = new Vector2(0, -4f); // Центр области руки
     [SerializeField] private Transform deckPosition; // Позиция колоды
-
-    public GameObject cardPrefab;
-    private List<GameObject> cardsInHand = new List<GameObject>();
-    // private bool isAnimating;
+    
+    public List<GameObject> cardsInHand = new List<GameObject>();
+    private bool isAnimating;
 
     private void Start()
     {
         ServiceLocator.Initialize();
         ServiceLocator.Current.Register<HandController>(this);
     }
-
-    private void Update()
+    
+    public IEnumerator DrawCardFromDeck(GameObject cardPrefab)
     {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
-
-        // if (hit.collider != null && hit.collider.CompareTag("Card"))
-        //     foreach (GameObject card in cardsInHand)
-        //         if (card == hit.collider.gameObject)
-        //             card.GetComponent<MovebleSmoothDump>().SelectedView();
-        //         else
-        //             card.GetComponent<MovebleSmoothDump>().SelectedUnview();
-        // else
-        //     foreach (GameObject card in cardsInHand)
-        //         card.GetComponent<MovebleSmoothDump>().SelectedUnview();
-        
-        if (Input.GetMouseButtonDown(0))
-        {
-            TryDrawCard();
-        }
-    }
-
-    // Попытка взять карту из колоды
-    private void TryDrawCard()
-    {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
-
-        if (hit.collider != null && hit.collider.CompareTag("Deck"))
-        {
-            DrawCardFromDeck();
-        }
-    }
-
-    // Взять новую карту из колоды
-    private void DrawCardFromDeck()
-    {
-        GameObject newCard = Instantiate(cardPrefab, deckPosition.position, Quaternion.identity);
-        cardsInHand.Add(newCard);
+        while (isAnimating)
+            yield return null;
+        GameObject ntwCard = Instantiate(cardPrefab, deckPosition.position, Quaternion.identity);
+        cardsInHand.Add(ntwCard);
         StartCoroutine(ArrangeCards());
         StartCoroutine(CardPickAnim());
     }
@@ -71,7 +38,7 @@ public class HandController : MonoBehaviour, IService
     // Анимация распределения карт
     public IEnumerator ArrangeCards()
     {
-        // isAnimating = true;
+        isAnimating = true;
         List<Vector3> targetPositions = CalculateCardPositions();
         List<float> targetRotations = CalculateCardRotations();
         
@@ -88,7 +55,7 @@ public class HandController : MonoBehaviour, IService
         }
 
         yield return new WaitUntil(() => !IsAnyCardMoving());
-        // isAnimating = false;
+        isAnimating = false;
     }
 
     private List<Vector3> CalculateCardPositions()

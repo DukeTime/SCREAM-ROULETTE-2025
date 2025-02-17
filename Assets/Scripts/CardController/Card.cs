@@ -1,10 +1,11 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Card : MonoBehaviour
 {
-    public CardInfo cardInfo = new CardInfo();
+    public CardInfo cardInfo;
     
     private MovebleSmoothDump moveble;
     
@@ -18,6 +19,7 @@ public class Card : MonoBehaviour
     void Start()
     {
         moveble = GetComponent<MovebleSmoothDump>();
+        cardInfo = GetComponent<CardInfo>();
     }
 
     void Update()
@@ -42,7 +44,7 @@ public class Card : MonoBehaviour
 
     private void PlayCard()
     {
-        
+        ServiceLocator.Current.Get<HandController>().cardsInHand.Remove(gameObject);
     }
 
 }

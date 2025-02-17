@@ -1,4 +1,6 @@
-public class CardInfo
+using UnityEngine;
+
+public class CardInfo: MonoBehaviour
 {
     public enum CardSuit
     {
@@ -7,7 +9,7 @@ public class CardInfo
         Trump
     };
     
-    public int value { get; set; } = 2;
-    public CardSuit suit { get; set; } = CardSuit.Red;
+    public int value = 2;
+    public CardSuit suit = CardSuit.Red;
     
 }
