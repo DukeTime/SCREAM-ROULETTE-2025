@@ -1148,7 +1148,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -4801746444824755728, guid: 956cbae511558944dbadc87feb4faf3a, type: 3}
       propertyPath: value
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 829269401715438694, guid: 956cbae511558944dbadc87feb4faf3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1156,7 +1156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 829269401715438694, guid: 956cbae511558944dbadc87feb4faf3a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 3.6
       objectReference: {fileID: 0}
     - target: {fileID: 829269401715438694, guid: 956cbae511558944dbadc87feb4faf3a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1193,6 +1193,18 @@ PrefabInstance:
     - target: {fileID: 2195166058263279351, guid: 956cbae511558944dbadc87feb4faf3a, type: 3}
       propertyPath: m_Name
       value: EnemyCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096222255478705362, guid: 956cbae511558944dbadc87feb4faf3a, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096222255478705362, guid: 956cbae511558944dbadc87feb4faf3a, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096222255478705362, guid: 956cbae511558944dbadc87feb4faf3a, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -18,6 +18,10 @@ public class EnemyCard : MonoBehaviour
     public EnemyCardState state = EnemyCardState.Closed;
     public int Bonus => (int)(cardInfo.value == 1 ? 1 : cardInfo.value * 0.5f);
 
+    public Action OnPlayCard;
+    public Action OnBeated;
+    public Action OnGetBonus;
+
     void Start()
     {
         cardInfo = GetComponent<CardInfo>();
@@ -55,17 +59,22 @@ public class EnemyCard : MonoBehaviour
         else
         {
             cardInfo.value -= playerCardInfo.value;
+            OnPlayCard?.Invoke();
         }
     }
 
     public void GetBonus()
     {
         cardInfo.value += Bonus;
+        
+        OnGetBonus?.Invoke();
     }
 
     private void Beat()
     {
         state = EnemyCardState.Beated;
         cardInfo.value = 0;
+        
+        OnBeated?.Invoke();
     }
 }
