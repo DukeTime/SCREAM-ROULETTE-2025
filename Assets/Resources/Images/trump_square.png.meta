@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      trump_square_0: 7217907995804914897
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
