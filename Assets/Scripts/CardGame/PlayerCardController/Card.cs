@@ -32,7 +32,7 @@ public class Card : MonoBehaviour
         EnemyCard enemyCard = slot.GetComponent<EnemyCard>();
         if (enemyCard != null)
         {
-            if (enemyCard.TryPlayCard(cardInfo))
+            if (enemyCard.TryPlayCard(gameObject))
             {
                 PlayCard();
                 state = CardState.Played;

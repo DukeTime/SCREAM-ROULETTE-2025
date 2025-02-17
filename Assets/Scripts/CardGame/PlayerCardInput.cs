@@ -21,6 +21,6 @@ public class PlayerCardInput : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
         if (hit.collider != null && hit.collider.CompareTag("Deck"))
-            _cardGameController.DrawCard();
+            _cardGameController.EndTurn();
     }
 }

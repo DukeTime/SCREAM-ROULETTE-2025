@@ -1,11 +1,13 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CardGameController : MonoBehaviour, IService
 {
-    
     public List<GameObject> cardsInDeck;
+    public int startCountOfCards = 5;
 
     private EnemyCardsController _enemyCardsController;
     
@@ -22,13 +24,29 @@ public class CardGameController : MonoBehaviour, IService
         
         _enemyCardsController = ServiceLocator.Current.Get<EnemyCardsController>();
         ShuffleDeck();
+        // for (int i = 0; i < startCountOfCards; i++)
+        //     DrawCard();
     }
 
-    public void DrawCard()
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(1))
+            DrawCard();
+    }
+
+    public void EndTurn()
+    {
+        state = GameState.EnemyTurn;
+        DrawCard(3);
+        _enemyCardsController.Turn();
+        state = GameState.PlayerTurn;
+    }
+
+    public void DrawCard(int count = 1)
     {
         if (cardsInDeck.Count == 0)
             return;
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < count; i++)
         {
             if (cardsInDeck.Count > 0)
             {
@@ -36,14 +54,6 @@ public class CardGameController : MonoBehaviour, IService
                 cardsInDeck.RemoveAt(cardsInDeck.Count - 1);
             }
         }
-        EnemyTurn();
-    }
-
-    public void EnemyTurn()
-    {
-        state = GameState.EnemyTurn;
-        _enemyCardsController.Turn();
-        state = GameState.PlayerTurn;
     }
 
     public void ShuffleDeck()
