@@ -581,6 +581,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 633480319}
   m_CullTransparentMesh: 1
+--- !u!1 &656218118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 656218120}
+  - component: {fileID: 656218119}
+  m_Layer: 0
+  m_Name: GameLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &656218119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656218118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d8c66193b1c42e429a94aa66557d513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardGameController: {fileID: 1852451170}
+  handController: {fileID: 961165956}
+  enemyCardsController: {fileID: 1113215232}
+  playerInput: {fileID: 1783927049}
+--- !u!4 &656218120
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 656218118}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.2817896, y: 2.0918846, z: -9.463245}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &957435809
 GameObject:
   m_ObjectHideFlags: 0
@@ -1224,10 +1272,11 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 957435811}
   - {fileID: 448793738}
-  - {fileID: 961165957}
   - {fileID: 1190315522}
   - {fileID: 1638420526}
   - {fileID: 1201269450849736123}
-  - {fileID: 1783927050}
+  - {fileID: 656218120}
   - {fileID: 1852451171}
+  - {fileID: 961165957}
   - {fileID: 1113215233}
+  - {fileID: 1783927050}

@@ -18,12 +18,7 @@ public class HandController : MonoBehaviour, IService
     
     public List<GameObject> cardsInHand = new List<GameObject>();
     private bool isAnimating;
-
-    private void Start()
-    {
-        ServiceLocator.Initialize();
-        ServiceLocator.Current.Register<HandController>(this);
-    }
+    
     
     public IEnumerator DrawCardFromDeck(GameObject cardPrefab)
     {

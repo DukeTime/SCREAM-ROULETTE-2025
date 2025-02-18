@@ -3,12 +3,6 @@ using UnityEngine;
 public class EnemyCardsController : MonoBehaviour, IService
 {
     public GameObject[] cards;
-    
-    void Start()
-    {
-        ServiceLocator.Initialize();
-        ServiceLocator.Current.Register<EnemyCardsController>(this);
-    }
 
     public void Turn()
     {

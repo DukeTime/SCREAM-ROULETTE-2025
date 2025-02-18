@@ -20,12 +20,10 @@ public class CardGameController : MonoBehaviour, IService
     
     void Start()
     {
-        ServiceLocator.Current.Register<CardGameController>(this);
-        
         _enemyCardsController = ServiceLocator.Current.Get<EnemyCardsController>();
         ShuffleDeck();
-        // for (int i = 0; i < startCountOfCards; i++)
-        //     DrawCard();
+        for (int i = 0; i < startCountOfCards; i++)
+             DrawCard();
     }
 
     private void Update()
