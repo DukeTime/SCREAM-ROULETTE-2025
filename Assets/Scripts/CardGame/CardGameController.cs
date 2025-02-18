@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,8 +9,13 @@ public class CardGameController : MonoBehaviour, IService
 {
     public List<GameObject> cardsInDeck;
     public int startCountOfCards = 5;
-
+    
+    public Action GameStart;
+    public Action GameEnd;
+    public Action MonologueEnd;
+    
     private EnemyCardsController _enemyCardsController;
+    private EnemyCardsView _enemyCardsView;
     
     public enum GameState
     {
@@ -21,14 +27,36 @@ public class CardGameController : MonoBehaviour, IService
     void Start()
     {
         _enemyCardsController = ServiceLocator.Current.Get<EnemyCardsController>();
-        ShuffleDeck();
-        for (int i = 0; i < startCountOfCards; i++)
-             DrawCard();
+        
+        StartCoroutine(EnemyMonologue());
     }
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(1))
+            DrawCard();
+    }
+
+    public void Victory()
+    {
+        
+    }
+
+    private IEnumerator EnemyMonologue()
+    {
+        MonologueEnd?.Invoke();
+        
+        yield return new WaitForSeconds(1.5f);
+        
+        StartGame();
+    }
+
+    private void StartGame()
+    {
+        GameStart?.Invoke();
+        
+        ShuffleDeck();
+        for (int i = 0; i < startCountOfCards; i++)
             DrawCard();
     }
 

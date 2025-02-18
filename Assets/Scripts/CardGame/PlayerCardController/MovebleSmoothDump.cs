@@ -115,7 +115,7 @@ public class MovebleSmoothDump : MonoBehaviour
     {
         isAnimating = true;
         int cardsOnCount = enemyCard.GetComponent<EnemyCard>().playerCardsOn.Count();
-        float enemyScaleY = enemyCard.transform.localScale.y;
+        cardsOnCount = 1;
                     
         targetPosition = new Vector3(enemyCard.transform.position.x, 
             enemyCard.transform.position.y - transform.localScale.y / 3 * cardsOnCount, 
@@ -127,6 +127,10 @@ public class MovebleSmoothDump : MonoBehaviour
         }
         transform.position = new Vector3(targetPosition.x, targetPosition.y, -0.01f * cardsOnCount);
         targetPosition = new Vector3(targetPosition.x, targetPosition.y, -0.01f * cardsOnCount);
+        
+        yield return new WaitForSeconds(0.1f);
+        Destroy(gameObject);
+        
         isAnimating = false;
     }
     

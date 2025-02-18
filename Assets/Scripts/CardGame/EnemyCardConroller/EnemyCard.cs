@@ -17,11 +17,13 @@ public class EnemyCard : MonoBehaviour
     };
     public EnemyCardState state = EnemyCardState.Closed;
     public int Bonus => (int)(cardInfo.value == 1 ? 1 : cardInfo.value * 0.5f);
+    public bool isOnTheBoard;
 
     public Action OnOpened;
     public Action OnPlayCard;
     public Action OnBeated;
     public Action OnGetBonus;
+    public Action OnAppearedOnTheBoard;
 
     void Start()
     {
@@ -33,10 +35,18 @@ public class EnemyCard : MonoBehaviour
         
     }
 
-    public void Open()
+    public void AppearOnTheBoard()
     {
-        state = EnemyCardState.Opened;
+        isOnTheBoard = true;
+        OnAppearedOnTheBoard?.Invoke();
+    }
+
+    public IEnumerator Open()
+    {
+        while (!isOnTheBoard)
+            yield return null;
         
+        state = EnemyCardState.Opened;
         OnOpened?.Invoke();
     }
 
