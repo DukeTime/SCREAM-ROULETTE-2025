@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -5,6 +6,8 @@ using UnityEngine;
 
 public class HandController : MonoBehaviour, IService
 {
+    public List<GameObject> cardsInHand = new List<GameObject>();
+    
     [Header("Settings")]
     [SerializeField] private float maxArcAngle = 60f; // Градус дуги (от -180 до 180)
     [SerializeField] private float cardSpacing = 5f; // Расстояние между картами
@@ -16,10 +19,15 @@ public class HandController : MonoBehaviour, IService
     [SerializeField] private Vector2 handCenter = new Vector2(0, -4f); // Центр области руки
     [SerializeField] private Transform deckPosition; // Позиция колоды
     
-    public List<GameObject> cardsInHand = new List<GameObject>();
+    private CardGameController _cardGameController;
     private bool isAnimating;
-    
-    
+
+    private void Start()
+    {
+        _cardGameController = ServiceLocator.Current.Get<CardGameController>();
+        _cardGameController.GameEnd += () => HandDisappear();
+    }
+
     public IEnumerator DrawCardFromDeck(GameObject cardPrefab)
     {
         while (isAnimating)
@@ -166,5 +174,16 @@ public class HandController : MonoBehaviour, IService
 
             yield return null;
         }
+    }
+
+    private void HandDisappear()
+    {
+        foreach (GameObject card in cardsInHand)
+        {
+            Card c = card.GetComponent<Card>();
+            c.Delete();
+        }
+
+        cardsInHand = new List<GameObject>();
     }
 }
