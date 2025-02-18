@@ -18,6 +18,7 @@ public class EnemyCard : MonoBehaviour
     public EnemyCardState state = EnemyCardState.Closed;
     public int Bonus => (int)(cardInfo.value == 1 ? 1 : cardInfo.value * 0.5f);
 
+    public Action OnOpened;
     public Action OnPlayCard;
     public Action OnBeated;
     public Action OnGetBonus;
@@ -32,14 +33,24 @@ public class EnemyCard : MonoBehaviour
         
     }
 
+    public void Open()
+    {
+        state = EnemyCardState.Opened;
+        
+        OnOpened?.Invoke();
+    }
+
     public bool TryPlayCard(GameObject playerCard)
     {
-        CardInfo playerCardInfo = playerCard.GetComponent<CardInfo>();
-        
-        if (playerCardInfo.suit == cardInfo.suit || playerCardInfo.suit == CardInfo.CardSuit.Trump)
+        if (state == EnemyCardState.Opened)
         {
-            StartCoroutine(PlayCard(playerCard));
-            return true;
+            CardInfo playerCardInfo = playerCard.GetComponent<CardInfo>();
+
+            if (playerCardInfo.suit == cardInfo.suit || playerCardInfo.suit == CardInfo.CardSuit.Trump)
+            {
+                StartCoroutine(PlayCard(playerCard));
+                return true;
+            }
         }
         return false;
     }
