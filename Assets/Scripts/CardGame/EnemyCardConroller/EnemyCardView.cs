@@ -42,24 +42,24 @@ public class EnemyCardView : MonoBehaviour
     
     private void PlayCard()
     {
-        valueText.transform.DOPunchScale( Vector3.one * 0.3f, 0.2f)
-            .OnComplete(() => {
+        valueText.transform.DOPunchScale( Vector3.one * 0.5f, 0.2f)
+            .OnKill(() => {
             valueText.text = _cardInfo.value.ToString();
         });
     }
     
     private void Beat()
     {
-        valueText.transform.DOPunchScale( Vector3.one * 0.3f, 0.2f)
-            .OnComplete(() => {
+        valueText.transform.DOPunchScale( Vector3.one * 0.5f, 0.2f)
+            .OnKill(() => {
                 valueText.text = _cardInfo.value.ToString();
             });
     }
     
     private void GetBonus()
     {
-        valueText.transform.DOPunchScale( Vector3.one * 0.3f, 0.2f)
-            .OnComplete(() => {
+        valueText.transform.DOPunchScale( Vector3.one * 0.5f, 0.2f)
+            .OnKill(() => {
                 valueText.text = _cardInfo.value.ToString();
             });
     }

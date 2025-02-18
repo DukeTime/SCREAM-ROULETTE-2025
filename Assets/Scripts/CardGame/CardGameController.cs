@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public class CardGameController : MonoBehaviour, IService
@@ -27,6 +28,8 @@ public class CardGameController : MonoBehaviour, IService
     void Start()
     {
         _enemyCardsController = ServiceLocator.Current.Get<EnemyCardsController>();
+        _enemyCardsController.OnAllCardsDefeated += Victory;
+        
         
         StartCoroutine(EnemyMonologue());
     }
@@ -37,9 +40,9 @@ public class CardGameController : MonoBehaviour, IService
             DrawCard();
     }
 
-    public void Victory()
+    private void Victory()
     {
-        
+        GameEnd?.Invoke();
     }
 
     private IEnumerator EnemyMonologue()
@@ -55,7 +58,7 @@ public class CardGameController : MonoBehaviour, IService
     {
         GameStart?.Invoke();
         
-        ShuffleDeck();
+        // ShuffleDeck();
         for (int i = 0; i < startCountOfCards; i++)
             DrawCard();
     }
@@ -85,5 +88,10 @@ public class CardGameController : MonoBehaviour, IService
     public void ShuffleDeck()
     {
         cardsInDeck = cardsInDeck.OrderBy(x => Random.value).ToList();
+    }
+
+    public void ChangeScene(string scene)
+    {
+        SceneManager.LoadScene(scene);
     }
 }

@@ -29,6 +29,8 @@ public class CardGameView : MonoBehaviour
     {
         _animator.SetTrigger("GameEnd");
         
-        yield return null;
+        yield return new WaitForSeconds(1.5f);
+        
+        _cardGameController.ChangeScene("Map1");
     }
 }

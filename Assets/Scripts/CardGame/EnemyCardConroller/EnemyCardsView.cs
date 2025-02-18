@@ -26,6 +26,7 @@ public class EnemyCardsView : MonoBehaviour
         _enemyCardsController = ServiceLocator.Current.Get<EnemyCardsController>();
 
         _cardGameController.GameStart += () => StartCoroutine(SetUpEnemyCards());
+        _enemyCardsController.OnCardBeaten += () => StartCoroutine(ArrangeEnemyCards(0.5f));
     }
 
 
@@ -81,8 +82,10 @@ public class EnemyCardsView : MonoBehaviour
         }
     }
 
-    private IEnumerator ArrangeEnemyCards()
+    private IEnumerator ArrangeEnemyCards(float delay = 0)
     {
+        yield return new WaitForSeconds(delay);
+        
         List<GameObject> cards = _enemyCardsController.cardsObjects;
         int cardsCount = cards.Count;
 

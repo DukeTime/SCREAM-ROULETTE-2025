@@ -678,7 +678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b92686556454b868892a8e04e27c4b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothTime: 0.01
+  smoothTime: 0.1
   maxVelocity: 50
   cardSpacing: 0.5
   enemyHandCenter: {x: -2.3, y: 7}
@@ -1405,16 +1405,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardsInDeck:
   - {fileID: 6818658193959556972, guid: 44072ab2549f6da49beee0349c0ad070, type: 3}
-  - {fileID: 6818658193959556972, guid: 44072ab2549f6da49beee0349c0ad070, type: 3}
-  - {fileID: 6818658193959556972, guid: 44072ab2549f6da49beee0349c0ad070, type: 3}
-  - {fileID: 6818658193959556972, guid: 44072ab2549f6da49beee0349c0ad070, type: 3}
-  - {fileID: 6818658193959556972, guid: 44072ab2549f6da49beee0349c0ad070, type: 3}
-  - {fileID: 6818658193959556972, guid: 44072ab2549f6da49beee0349c0ad070, type: 3}
-  - {fileID: 6818658193959556972, guid: 44072ab2549f6da49beee0349c0ad070, type: 3}
-  - {fileID: 6818658193959556972, guid: 44072ab2549f6da49beee0349c0ad070, type: 3}
-  - {fileID: 6818658193959556972, guid: 44072ab2549f6da49beee0349c0ad070, type: 3}
-  - {fileID: 6818658193959556972, guid: 44072ab2549f6da49beee0349c0ad070, type: 3}
-  - {fileID: 6818658193959556972, guid: 44072ab2549f6da49beee0349c0ad070, type: 3}
+  - {fileID: 6818658193959556972, guid: 1fe72ef5786ec5a408200fc5ed750708, type: 3}
+  - {fileID: 6818658193959556972, guid: 180e695a010708b43bf525e6de71e12c, type: 3}
+  - {fileID: 6818658193959556972, guid: 8ea8d9185a5c52d4aa52e3c9070f8bdf, type: 3}
+  - {fileID: 6818658193959556972, guid: 2535ddacefebc5248a922b57b60bcad2, type: 3}
+  - {fileID: 6818658193959556972, guid: 6e14599062d76844ea5efaf00b4b0809, type: 3}
+  - {fileID: 6818658193959556972, guid: b8dc87261e2d31647892de7dd3e7bb58, type: 3}
+  - {fileID: 6818658193959556972, guid: 96fea31c9c318d947a30dc697602d90d, type: 3}
+  - {fileID: 6818658193959556972, guid: 8ea8d9185a5c52d4aa52e3c9070f8bdf, type: 3}
+  - {fileID: 6818658193959556972, guid: 180e695a010708b43bf525e6de71e12c, type: 3}
+  - {fileID: 6818658193959556972, guid: 1fe72ef5786ec5a408200fc5ed750708, type: 3}
   - {fileID: 6818658193959556972, guid: 44072ab2549f6da49beee0349c0ad070, type: 3}
   startCountOfCards: 5
   state: 0

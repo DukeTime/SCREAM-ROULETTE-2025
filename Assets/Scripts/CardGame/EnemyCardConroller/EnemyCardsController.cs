@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -7,6 +8,9 @@ public class EnemyCardsController : MonoBehaviour, IService
 {
     public List<GameObject> cardsObjects;
     public List<GameObject> cardsPrefs;
+    
+    public Action OnAllCardsDefeated;
+    public Action OnCardBeaten;
     
     private int _cardBeated;
     private CardGameController _cardGameController;
@@ -21,7 +25,7 @@ public class EnemyCardsController : MonoBehaviour, IService
         {
             EnemyCard enemyCard = card.GetComponent<EnemyCard>();
             
-            enemyCard.OnBeated += CardBeated;
+            enemyCard.OnBeated += CardBeaten;
         }
     }
 
@@ -40,11 +44,20 @@ public class EnemyCardsController : MonoBehaviour, IService
         }
     }
 
-    private void CardBeated()
+    private void CardBeaten()
     {
+        if (_cardBeated == cardsPrefs.Count - 1)
+        {
+            Destroy(cardsObjects[0]);
+            OnAllCardsDefeated?.Invoke();
+            return;
+        }
+        
         _cardBeated++;
-
-        StartCoroutine(cardsObjects[_cardBeated].GetComponent<EnemyCard>().Open());
+        cardsObjects.RemoveAt(0);
+        StartCoroutine(cardsObjects[0].GetComponent<EnemyCard>().Open());
+        
+        OnCardBeaten?.Invoke();
     }
 
     private void SpawnCards()

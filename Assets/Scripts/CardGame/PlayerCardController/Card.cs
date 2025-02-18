@@ -8,18 +8,23 @@ public class Card : MonoBehaviour
     public CardInfo cardInfo;
     
     private MovebleSmoothDump moveble;
+    private CardGameController _cardGameController;
     
     public enum CardState
     {
         Hand,
-        Played
+        Played,
+        NotEnabled
     };
     public CardState state = CardState.Hand;
     
     void Start()
     {
+        _cardGameController = ServiceLocator.Current.Get<CardGameController>();
         moveble = GetComponent<MovebleSmoothDump>();
         cardInfo = GetComponent<CardInfo>();
+
+        _cardGameController.GameEnd += () => Delete();
     }
 
     void Update()
@@ -45,6 +50,12 @@ public class Card : MonoBehaviour
     private void PlayCard()
     {
         ServiceLocator.Current.Get<HandController>().cardsInHand.Remove(gameObject);
+    }
+
+    private void Delete()
+    {
+        state = CardState.NotEnabled;
+        Destroy(gameObject);
     }
 
 }

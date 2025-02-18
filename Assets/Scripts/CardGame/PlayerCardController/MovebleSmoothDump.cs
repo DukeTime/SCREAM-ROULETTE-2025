@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class MovebleSmoothDump : MonoBehaviour
 {
     public Vector3 targetPosition = Vector3.zero;
     
-    public const float SmoothTime = 0.3f;
+    public float smoothTime = 0.3f;
     public float maxVelocity = 12.5f;
     public bool isHolding = false;
     public bool isSelected = false;
@@ -35,10 +36,10 @@ public class MovebleSmoothDump : MonoBehaviour
     void Update()
     {
         if (isHolding)
-            MoveXY();
+            MoveXY(smoothTime);
     }
 
-    private void MoveXY(float smoothTimeToMove = SmoothTime)
+    private void MoveXY(float smoothTimeToMove)
     {
         if (Vector3.Distance(transform.position, targetPosition) > 0.01f || velocity.magnitude > 0.01f)
         {
@@ -122,7 +123,7 @@ public class MovebleSmoothDump : MonoBehaviour
             -1);
         while (velocity != Vector3.zero)
         {
-            MoveXY(smoothTimeToMove: SmoothTime / 4);
+            MoveXY(smoothTimeToMove: smoothTime / 4);
             yield return null;
         }
         transform.position = new Vector3(targetPosition.x, targetPosition.y, -0.01f * cardsOnCount);

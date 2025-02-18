@@ -76,7 +76,7 @@ public class EnemyCard : MonoBehaviour
         playerCardsOn.Add(playerCard);
         
         if (playerCardInfo.value >= cardInfo.value)
-            Beat();
+            StartCoroutine(Beat());
         else
         {
             cardInfo.value -= playerCardInfo.value;
@@ -91,11 +91,15 @@ public class EnemyCard : MonoBehaviour
         OnGetBonus?.Invoke();
     }
 
-    private void Beat()
+    private IEnumerator Beat()
     {
         state = EnemyCardState.Beated;
         cardInfo.value = 0;
+
+        yield return new WaitForSeconds(0.75f);
         
         OnBeated?.Invoke();
+        Destroy(gameObject);
+            
     }
 }
