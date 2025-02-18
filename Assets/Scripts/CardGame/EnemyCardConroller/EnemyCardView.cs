@@ -7,35 +7,43 @@ using UnityEngine.Serialization;
 
 public class EnemyCardView : MonoBehaviour
 {
-    private EnemyCard enemyCardController;
-    private CardInfo cardInfo;
+    private EnemyCard _enemyCardController;
+    private CardInfo _cardInfo;
+    private Animator _animator;
     
     [SerializeField] private SpriteRenderer suitIcon;
     [SerializeField] private TextMeshProUGUI valueText;
 
     private void Start()
     {
-        enemyCardController = GetComponent<EnemyCard>();
-        cardInfo = GetComponent<CardInfo>();
+        _enemyCardController = GetComponent<EnemyCard>();
+        _cardInfo = GetComponent<CardInfo>();
+        _animator = GetComponent<Animator>();
 
-        enemyCardController.OnPlayCard += PlayCard;
-        enemyCardController.OnBeated += Beat;
-        enemyCardController.OnGetBonus += GetBonus;
+        _enemyCardController.OnPlayCard += PlayCard;
+        _enemyCardController.OnBeated += Beat;
+        _enemyCardController.OnGetBonus += GetBonus;
+        _enemyCardController.OnOpened += Open;
         
         SynchronizeView();
     }
 
     private void SynchronizeView()
     {
-        suitIcon.color = cardInfo.suit == CardInfo.CardSuit.Red ? Color.red : cardInfo.suit == CardInfo.CardSuit.Black ? Color.black : Color.magenta;
-        valueText.text = cardInfo.value.ToString();
+        suitIcon.color = _cardInfo.suit == CardInfo.CardSuit.Red ? Color.red : _cardInfo.suit == CardInfo.CardSuit.Black ? Color.black : Color.magenta;
+        valueText.text = _cardInfo.value.ToString();
+    }
+
+    private void Open()
+    {
+        _animator.SetTrigger("Open");
     }
     
     private void PlayCard()
     {
         valueText.transform.DOPunchScale( Vector3.one * 0.3f, 0.2f)
             .OnComplete(() => {
-            valueText.text = cardInfo.value.ToString();
+            valueText.text = _cardInfo.value.ToString();
         });
     }
     
@@ -43,7 +51,7 @@ public class EnemyCardView : MonoBehaviour
     {
         valueText.transform.DOPunchScale( Vector3.one * 0.3f, 0.2f)
             .OnComplete(() => {
-                valueText.text = cardInfo.value.ToString();
+                valueText.text = _cardInfo.value.ToString();
             });
     }
     
@@ -51,7 +59,7 @@ public class EnemyCardView : MonoBehaviour
     {
         valueText.transform.DOPunchScale( Vector3.one * 0.3f, 0.2f)
             .OnComplete(() => {
-                valueText.text = cardInfo.value.ToString();
+                valueText.text = _cardInfo.value.ToString();
             });
     }
 }

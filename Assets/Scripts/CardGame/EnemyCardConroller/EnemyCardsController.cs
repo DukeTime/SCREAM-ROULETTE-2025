@@ -4,10 +4,23 @@ public class EnemyCardsController : MonoBehaviour, IService
 {
     public GameObject[] cards;
     
-    void Start()
+    private int _cardBeated;
+
+    private void Start()
     {
-        ServiceLocator.Initialize();
-        ServiceLocator.Current.Register<EnemyCardsController>(this);
+        GameStart();
+        
+        foreach (GameObject card in cards)
+        {
+            EnemyCard enemyCard = card.GetComponent<EnemyCard>();
+            
+            enemyCard.OnBeated += CardBeated;
+        }
+    }
+
+    public void GameStart()
+    {
+        cards[0].GetComponent<EnemyCard>().Open();
     }
 
     public void Turn()
@@ -18,5 +31,12 @@ public class EnemyCardsController : MonoBehaviour, IService
             if (enemyCard.state == EnemyCard.EnemyCardState.Opened)
                 enemyCard.GetBonus();
         }
+    }
+
+    private void CardBeated()
+    {
+        _cardBeated++;
+
+        cards[_cardBeated].GetComponent<EnemyCard>().Open();
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerCardInput : MonoBehaviour
+public class PlayerInput : MonoBehaviour
 {
     private CardGameController _cardGameController;
     private void Start()
