@@ -104,4 +104,6 @@ public static class PlayerData
             }
         },
     };
+    
+    public static List<ConsumableData> Consumables = new List<ConsumableData>();
 }

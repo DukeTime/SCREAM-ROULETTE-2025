@@ -11,6 +11,7 @@ public class CardGameController : MonoBehaviour, IService
 {
     public List<CardData> cardsInDeckData;
     public List<GameObject> cardsInHand;
+    public List<ConsumableData> consumables;
     public int startCountOfCards = 5;
     
     public Action GameStart;
@@ -46,6 +47,25 @@ public class CardGameController : MonoBehaviour, IService
     {
         if (Input.GetMouseButtonDown(1))
             DrawCard();
+        if (Input.GetMouseButtonUp(0))
+            ActivateConsumable(consumables[0]);
+    }
+
+    private void InitConsumables()
+    {
+        consumables = PlayerData.Consumables;
+        consumables.Add(AllConsumables.All.Find(m => m.name == "The Scroll of the Ancients"));
+    }
+
+    private void ActivateConsumable(ConsumableData consumable)
+    {
+        switch (consumable.name)
+        {
+            case "The Scroll of the Ancients":
+                MakeAllHandTrump c = gameObject.AddComponent<MakeAllHandTrump>();
+                c.Activate();
+                return;
+        }
     }
 
     private void Victory()
@@ -73,6 +93,7 @@ public class CardGameController : MonoBehaviour, IService
     {
         GameStart?.Invoke();
         
+        InitConsumables();
         ShuffleDeck();
         DrawCard(startCountOfCards);
     }

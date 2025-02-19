@@ -43,6 +43,7 @@ public class EnemyCard : MonoBehaviour
             yield return null;
         
         state = EnemyCardState.Opened;
+        cardData.bonus = (int)(cardData.cardInfo.value == 1 ? 1 : cardData.cardInfo.value * 0.5f);
         OnOpened?.Invoke();
     }
 
@@ -82,9 +83,11 @@ public class EnemyCard : MonoBehaviour
 
     public void GetBonus()
     {
-        cardData.cardInfo.value += cardData.Bonus;
+        cardData.cardInfo.value += cardData.bonus;
         
         OnGetBonus?.Invoke();
+        
+        cardData.bonus = (int)(cardData.cardInfo.value == 1 ? 1 : cardData.cardInfo.value * 0.5f);
     }
 
     private IEnumerator Beat()
