@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -5,6 +6,9 @@ using UnityEngine;
 
 public class HandController : MonoBehaviour, IService
 {
+    public List<GameObject> cardsInHand = new List<GameObject>();
+    public bool isAnimating;
+    
     [Header("Settings")]
     [SerializeField] private float maxArcAngle = 60f; // Градус дуги (от -180 до 180)
     [SerializeField] private float cardSpacing = 5f; // Расстояние между картами
@@ -16,16 +20,20 @@ public class HandController : MonoBehaviour, IService
     [SerializeField] private Vector2 handCenter = new Vector2(0, -4f); // Центр области руки
     [SerializeField] private Transform deckPosition; // Позиция колоды
     
-    public List<GameObject> cardsInHand = new List<GameObject>();
-    private bool isAnimating;
-    
-    
+    private CardGameController _cardGameController;
+
+    private void Start()
+    {
+        _cardGameController = ServiceLocator.Current.Get<CardGameController>();
+        _cardGameController.GameEnd += () => HandDisappear();
+    }
+
     public IEnumerator DrawCardFromDeck(GameObject cardPrefab)
     {
         while (isAnimating)
             yield return null;
-        GameObject ntwCard = Instantiate(cardPrefab, deckPosition.position, Quaternion.identity);
-        cardsInHand.Add(ntwCard);
+        cardPrefab.transform.position = deckPosition.position;
+        cardsInHand.Add(cardPrefab);
         StartCoroutine(ArrangeCards());
         StartCoroutine(CardPickAnim());
     }
@@ -33,24 +41,29 @@ public class HandController : MonoBehaviour, IService
     // Анимация распределения карт
     public IEnumerator ArrangeCards()
     {
-        isAnimating = true;
-        List<Vector3> targetPositions = CalculateCardPositions();
-        List<float> targetRotations = CalculateCardRotations();
-        
-        List<GameObject> cardsToMove = new List<GameObject>();
-
-        for (int i = 0; i < cardsInHand.Count; i++)
+        if (_cardGameController.state != CardGameController.GameState.GameEnd)
         {
-            if (!(cardsInHand[i].GetComponent<MovebleSmoothDump>().isHolding || cardsInHand[i].GetComponent<MovebleSmoothDump>().isSelected))
-                cardsToMove.Add(cardsInHand[i]);
-        }
-        for (int i = 0; i < cardsToMove.Count; i++)
-        {
-            StartCoroutine(MoveCardToPosition(cardsToMove[i], targetPositions[i], targetRotations[i]));
-        }
+            isAnimating = true;
+            List<Vector3> targetPositions = CalculateCardPositions();
+            List<float> targetRotations = CalculateCardRotations();
 
-        yield return new WaitUntil(() => !IsAnyCardMoving());
-        isAnimating = false;
+            List<GameObject> cardsToMove = new List<GameObject>();
+
+            for (int i = 0; i < cardsInHand.Count; i++)
+            {
+                if (!(cardsInHand[i].GetComponent<MovebleSmoothDump>().isHolding ||
+                      cardsInHand[i].GetComponent<MovebleSmoothDump>().isSelected))
+                    cardsToMove.Add(cardsInHand[i]);
+            }
+
+            for (int i = 0; i < cardsToMove.Count; i++)
+            {
+                StartCoroutine(MoveCardToPosition(cardsToMove[i], targetPositions[i], targetRotations[i]));
+            }
+
+            yield return new WaitUntil(() => !IsAnyCardMoving());
+            isAnimating = false;
+        }
     }
 
     private List<Vector3> CalculateCardPositions()
@@ -166,5 +179,16 @@ public class HandController : MonoBehaviour, IService
 
             yield return null;
         }
+    }
+
+    private void HandDisappear()
+    {
+        foreach (GameObject card in cardsInHand)
+        {
+            Card c = card.GetComponent<Card>();
+            c.Delete();
+        }
+
+        cardsInHand = new List<GameObject>();
     }
 }

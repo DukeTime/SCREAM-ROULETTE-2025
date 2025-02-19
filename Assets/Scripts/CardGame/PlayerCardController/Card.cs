@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 
 public class Card : MonoBehaviour
 {
-    public CardInfo cardInfo;
+    public CardData cardData;
     
     private MovebleSmoothDump moveble;
     private CardGameController _cardGameController;
@@ -22,16 +22,13 @@ public class Card : MonoBehaviour
     {
         _cardGameController = ServiceLocator.Current.Get<CardGameController>();
         moveble = GetComponent<MovebleSmoothDump>();
-        cardInfo = GetComponent<CardInfo>();
-
-        _cardGameController.GameEnd += () => Delete();
     }
 
-    void Update()
+    public void Init(CardData data)
     {
-        
+        cardData = data;
     }
-
+    
     public bool TryPlayCard(GameObject slot)
     {
         EnemyCard enemyCard = slot.GetComponent<EnemyCard>();
@@ -52,10 +49,10 @@ public class Card : MonoBehaviour
         ServiceLocator.Current.Get<HandController>().cardsInHand.Remove(gameObject);
     }
 
-    private void Delete()
+    public void Delete()
     {
         state = CardState.NotEnabled;
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
 }
