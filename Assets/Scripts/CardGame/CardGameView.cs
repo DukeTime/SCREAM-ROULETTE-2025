@@ -15,8 +15,7 @@ public class CardGameView : MonoBehaviour
         _cardGameController = ServiceLocator.Current.Get<CardGameController>();
         
         _cardGameController.MonologueEnd += () => StartCoroutine(GameStart());
-        _cardGameController.OnVictory += () => StartCoroutine(Victory());
-        _cardGameController.OnDeath += () => StartCoroutine(Death());
+        _cardGameController.GameEnd += () => StartCoroutine(GameEnd());
     }
 
     private IEnumerator GameStart()
@@ -26,18 +25,9 @@ public class CardGameView : MonoBehaviour
         yield return null;
     }
     
-    private IEnumerator Victory()
+    private IEnumerator GameEnd()
     {
-        _animator.SetTrigger("Victory");
-        
-        yield return new WaitForSeconds(1.5f);
-        
-        _cardGameController.ChangeScene("Map1");
-    }
-    
-    private IEnumerator Death()
-    {
-        _animator.SetTrigger("Death");
+        _animator.SetTrigger("GameEnd");
         
         yield return new WaitForSeconds(1.5f);
         

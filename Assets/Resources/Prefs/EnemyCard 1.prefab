@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 3456614523757780264}
   - component: {fileID: 8769503077114313556}
   m_Layer: 0
-  m_Name: EnemyCard
+  m_Name: EnemyCard 1
   m_TagString: CardSlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -197,7 +197,6 @@ MonoBehaviour:
   cardInfo: {fileID: 0}
   playerCardsOn: []
   state: 0
-  isOnTheBoard: 0
 --- !u!65 &3473807790565125034
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -231,8 +230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d2fb17f5794bcfb13022735417cf7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: 6
-  suit: 0
+  value: 8
+  suit: 1
 --- !u!114 &3456614523757780264
 MonoBehaviour:
   m_ObjectHideFlags: 0

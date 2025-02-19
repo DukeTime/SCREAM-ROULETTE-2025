@@ -9,7 +9,7 @@ using UnityEngine.Serialization;
 public class EnemyCardView : MonoBehaviour
 {
     private EnemyCard _enemyCardController;
-    private EnemyCardData _cardData;
+    private CardInfo _cardInfo;
     private Animator _animator;
     
     [SerializeField] private SpriteRenderer suitIcon;
@@ -18,7 +18,7 @@ public class EnemyCardView : MonoBehaviour
     private void Start()
     {
         _enemyCardController = GetComponent<EnemyCard>();
-        _cardData = _enemyCardController.cardData;
+        _cardInfo = GetComponent<CardInfo>();
         _animator = GetComponent<Animator>();
 
         _enemyCardController.OnPlayCard += PlayCard;
@@ -31,9 +31,8 @@ public class EnemyCardView : MonoBehaviour
 
     private void SynchronizeView()
     {
-        suitIcon.color = _cardData.cardInfo.suit == CardInfo.CardSuit.Red ? Color.red : 
-            _cardData.cardInfo.suit == CardInfo.CardSuit.Black ? Color.black : Color.magenta;
-        valueText.text = _cardData.cardInfo.value.ToString();
+        suitIcon.color = _cardInfo.suit == CardInfo.CardSuit.Red ? Color.red : _cardInfo.suit == CardInfo.CardSuit.Black ? Color.black : Color.magenta;
+        valueText.text = _cardInfo.value.ToString();
     }
 
     private void Open()
@@ -45,7 +44,7 @@ public class EnemyCardView : MonoBehaviour
     {
         valueText.transform.DOPunchScale( Vector3.one * 0.5f, 0.2f)
             .OnKill(() => {
-            valueText.text = _cardData.cardInfo.value.ToString();
+            valueText.text = _cardInfo.value.ToString();
         });
     }
     
@@ -53,7 +52,7 @@ public class EnemyCardView : MonoBehaviour
     {
         valueText.transform.DOPunchScale( Vector3.one * 0.5f, 0.2f)
             .OnKill(() => {
-                valueText.text = _cardData.cardInfo.value.ToString();
+                valueText.text = _cardInfo.value.ToString();
             });
     }
     
@@ -61,7 +60,7 @@ public class EnemyCardView : MonoBehaviour
     {
         valueText.transform.DOPunchScale( Vector3.one * 0.5f, 0.2f)
             .OnKill(() => {
-                valueText.text = _cardData.cardInfo.value.ToString();
+                valueText.text = _cardInfo.value.ToString();
             });
     }
 }
