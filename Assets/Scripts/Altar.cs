@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using System.Collections;
+using System.Security.Cryptography.X509Certificates;
 
 public class Altar : MonoBehaviour
 {
-    public string Upgrade; 
-    public GameObject pressEText; 
-
+    public string Upgrade; // Имя сцены для загрузки
+    public GameObject pressEText; // Ссылка на текстовый объект UI, который будет отображать "Press E"
+    public FadeManager fademanager;
     private bool isPlayerInRange = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -14,7 +15,7 @@ public class Altar : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isPlayerInRange = true;
-            pressEText.SetActive(true); 
+            pressEText.SetActive(true); // Показываем текст "Press E"
         }
     }
 
@@ -23,7 +24,7 @@ public class Altar : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isPlayerInRange = false;
-            pressEText.SetActive(false); 
+            pressEText.SetActive(false); // Скрываем текст "Press E"
         }
     }
 
@@ -31,15 +32,8 @@ public class Altar : MonoBehaviour
     {
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            LoadNextScene();
+            StartCoroutine(fademanager.FadeAndLoadScene(Upgrade));
         }
     }
 
-    private void LoadNextScene()
-    {
-        if (!string.IsNullOrEmpty(Upgrade))
-        {
-            SceneManager.LoadScene(Upgrade);
-        }
-    }
 }
