@@ -952,7 +952,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 577dc5a924db42e2828d5c85390ad0a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardsInHand: []
   maxArcAngle: 45
   cardSpacing: 8
   minCardSpacing: 1
@@ -962,6 +961,7 @@ MonoBehaviour:
   handPow: 0.01
   handCenter: {x: -3.2, y: -3.5}
   deckPosition: {fileID: 448793738}
+  cardsInHand: []
 --- !u!4 &961165957
 Transform:
   m_ObjectHideFlags: 0
@@ -1046,28 +1046,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardsObjects: []
-  cardsData: []
-  data:
-    id: 0
-    name: test
-    deck:
-    - id: 
-      cardInfo:
-        value: 8
-        suit: 0
-    - id: 
-      cardInfo:
-        value: 10
-        suit: 1
-    - id: 
-      cardInfo:
-        value: 6
-        suit: 2
-    - id: 
-      cardInfo:
-        value: 7
-        suit: 0
-  cardDefaultPrefab: {fileID: 2195166058263279351, guid: 956cbae511558944dbadc87feb4faf3a, type: 3}
+  cardsPrefs:
+  - {fileID: 2195166058263279351, guid: 956cbae511558944dbadc87feb4faf3a, type: 3}
+  - {fileID: 2195166058263279351, guid: 26b11af4518739a499de9ae7908a41ae, type: 3}
+  - {fileID: 2195166058263279351, guid: fbea2af98b3e9d649b37e61dd93f2bbb, type: 3}
 --- !u!4 &1113215233
 Transform:
   m_ObjectHideFlags: 0
@@ -1421,10 +1403,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd2533a1a13b44a8b29a68bec14cb91a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardsInDeckData: []
-  cardsInHand: []
+  cardsInDeck:
+  - {fileID: 6818658193959556972, guid: 44072ab2549f6da49beee0349c0ad070, type: 3}
+  - {fileID: 6818658193959556972, guid: 1fe72ef5786ec5a408200fc5ed750708, type: 3}
+  - {fileID: 6818658193959556972, guid: 180e695a010708b43bf525e6de71e12c, type: 3}
+  - {fileID: 6818658193959556972, guid: 8ea8d9185a5c52d4aa52e3c9070f8bdf, type: 3}
+  - {fileID: 6818658193959556972, guid: 2535ddacefebc5248a922b57b60bcad2, type: 3}
+  - {fileID: 6818658193959556972, guid: 6e14599062d76844ea5efaf00b4b0809, type: 3}
+  - {fileID: 6818658193959556972, guid: b8dc87261e2d31647892de7dd3e7bb58, type: 3}
+  - {fileID: 6818658193959556972, guid: 96fea31c9c318d947a30dc697602d90d, type: 3}
+  - {fileID: 6818658193959556972, guid: 8ea8d9185a5c52d4aa52e3c9070f8bdf, type: 3}
+  - {fileID: 6818658193959556972, guid: 180e695a010708b43bf525e6de71e12c, type: 3}
+  - {fileID: 6818658193959556972, guid: 1fe72ef5786ec5a408200fc5ed750708, type: 3}
+  - {fileID: 6818658193959556972, guid: 44072ab2549f6da49beee0349c0ad070, type: 3}
   startCountOfCards: 5
-  cardDefaultPrefab: {fileID: 6818658193959556972, guid: 44072ab2549f6da49beee0349c0ad070, type: 3}
   state: 0
 --- !u!4 &1852451171
 Transform:

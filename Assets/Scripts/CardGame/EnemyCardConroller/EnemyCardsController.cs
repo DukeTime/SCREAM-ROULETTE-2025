@@ -7,13 +7,10 @@ using UnityEngine.Serialization;
 public class EnemyCardsController : MonoBehaviour, IService
 {
     public List<GameObject> cardsObjects;
-    public List<EnemyCardData> cardsData;
+    public List<GameObject> cardsPrefs;
     
     public Action OnAllCardsDefeated;
     public Action OnCardBeaten;
-
-    [SerializeField] private EnemyData data;
-    [SerializeField] private GameObject cardDefaultPrefab;
     
     private int _cardBeated;
     private CardGameController _cardGameController;
@@ -23,9 +20,7 @@ public class EnemyCardsController : MonoBehaviour, IService
         _cardGameController = ServiceLocator.Current.Get<CardGameController>();
         _cardGameController.GameStart += GameStart;
         
-        LoadDeckCards();
         SpawnCards();
-        
         foreach (GameObject card in cardsObjects)
         {
             EnemyCard enemyCard = card.GetComponent<EnemyCard>();
@@ -41,20 +36,17 @@ public class EnemyCardsController : MonoBehaviour, IService
 
     public void Turn()
     {
-        if (_cardGameController.state != CardGameController.GameState.GameEnd)
+        foreach (GameObject card in cardsObjects)
         {
-            foreach (GameObject card in cardsObjects)
-            {
-                EnemyCard enemyCard = card.GetComponent<EnemyCard>();
-                if (enemyCard.state == EnemyCard.EnemyCardState.Opened)
-                    enemyCard.GetBonus();
-            }
+            EnemyCard enemyCard = card.GetComponent<EnemyCard>();
+            if (enemyCard.state == EnemyCard.EnemyCardState.Opened)
+                enemyCard.GetBonus();
         }
     }
 
     private void CardBeaten()
     {
-        if (_cardBeated == cardsData.Count - 1)
+        if (_cardBeated == cardsPrefs.Count - 1)
         {
             Destroy(cardsObjects[0]);
             OnAllCardsDefeated?.Invoke();
@@ -70,17 +62,9 @@ public class EnemyCardsController : MonoBehaviour, IService
 
     private void SpawnCards()
     {
-        foreach (EnemyCardData card in cardsData)
+        foreach (GameObject card in cardsPrefs)
         {
-            GameObject newEnemyCard = Instantiate(cardDefaultPrefab, new Vector3(0, 7, 0),
-                Quaternion.Euler(new Vector3(0, 180, 0)));
-            newEnemyCard.GetComponent<EnemyCard>().Init(card);
-            cardsObjects.Add(newEnemyCard);
+            cardsObjects.Add(Instantiate(card, new Vector3(0, 7, 0), Quaternion.Euler(new Vector3(0, 180, 0))));
         }
-    }
-    
-    private void LoadDeckCards()
-    {
-        cardsData = data.deck;
     }
 }

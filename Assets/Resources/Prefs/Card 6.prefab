@@ -431,7 +431,7 @@ GameObject:
   - component: {fileID: 5301283736966837033}
   - component: {fileID: 8483400940240700691}
   m_Layer: 0
-  m_Name: Card
+  m_Name: Card 6
   m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -629,7 +629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 2
-  suit: 0
+  suit: 2
 --- !u!114 &8483400940240700691
 MonoBehaviour:
   m_ObjectHideFlags: 0
