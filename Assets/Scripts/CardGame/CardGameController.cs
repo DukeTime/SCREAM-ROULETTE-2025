@@ -4,24 +4,31 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class CardGameController : MonoBehaviour, IService
 {
-    public List<GameObject> cardsInDeck;
+    public List<CardData> cardsInDeckData;
+    public List<GameObject> cardsInHand;
     public int startCountOfCards = 5;
     
     public Action GameStart;
     public Action GameEnd;
+    public Action OnVictory;
+    public Action OnDeath;
     public Action MonologueEnd;
     
     private EnemyCardsController _enemyCardsController;
     private EnemyCardsView _enemyCardsView;
     
+    [SerializeField] private GameObject cardDefaultPrefab;
+    
     public enum GameState
     {
         PlayerTurn,
-        EnemyTurn
+        EnemyTurn,
+        GameEnd
     }
     public GameState state;
     
@@ -30,6 +37,7 @@ public class CardGameController : MonoBehaviour, IService
         _enemyCardsController = ServiceLocator.Current.Get<EnemyCardsController>();
         _enemyCardsController.OnAllCardsDefeated += Victory;
         
+        LoadDeckCards();
         
         StartCoroutine(EnemyMonologue());
     }
@@ -43,6 +51,13 @@ public class CardGameController : MonoBehaviour, IService
     private void Victory()
     {
         GameEnd?.Invoke();
+        OnVictory?.Invoke();
+    }
+    
+    private void Death()
+    {
+        GameEnd?.Invoke();
+        OnDeath?.Invoke();
     }
 
     private IEnumerator EnemyMonologue()
@@ -58,9 +73,8 @@ public class CardGameController : MonoBehaviour, IService
     {
         GameStart?.Invoke();
         
-        // ShuffleDeck();
-        for (int i = 0; i < startCountOfCards; i++)
-            DrawCard();
+        ShuffleDeck();
+        DrawCard(startCountOfCards);
     }
 
     public void EndTurn()
@@ -73,25 +87,38 @@ public class CardGameController : MonoBehaviour, IService
 
     public void DrawCard(int count = 1)
     {
-        if (cardsInDeck.Count == 0)
+        if (cardsInDeckData.Count == 0)
+        {
+            state = GameState.GameEnd;
+            Death();
             return;
+        }
         for (int i = 0; i < count; i++)
         {
-            if (cardsInDeck.Count > 0)
+            if (cardsInDeckData.Count > 0)
             {
-                StartCoroutine((ServiceLocator.Current.Get<HandController>().DrawCardFromDeck(cardsInDeck.Last())));
-                cardsInDeck.RemoveAt(cardsInDeck.Count - 1);
+                GameObject cardObj = Instantiate(cardDefaultPrefab);
+                cardObj.GetComponent<Card>().Init(cardsInDeckData.Last());
+                
+                cardsInHand.Add(cardObj);
+                StartCoroutine((ServiceLocator.Current.Get<HandController>().DrawCardFromDeck(cardObj)));
+                cardsInDeckData.RemoveAt(cardsInDeckData.Count - 1);
             }
         }
     }
 
     public void ShuffleDeck()
     {
-        cardsInDeck = cardsInDeck.OrderBy(x => Random.value).ToList();
+        cardsInDeckData = cardsInDeckData.OrderBy(x => Random.value).ToList();
     }
 
     public void ChangeScene(string scene)
     {
         SceneManager.LoadScene(scene);
+    }
+
+    private void LoadDeckCards()
+    {
+        cardsInDeckData = PlayerData.deck;
     }
 }

@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class EnemyCard : MonoBehaviour
 {
-    public CardInfo cardInfo;
+    public EnemyCardData cardData;
     public List<GameObject> playerCardsOn = new List<GameObject>();
     
     public enum EnemyCardState
@@ -16,7 +17,7 @@ public class EnemyCard : MonoBehaviour
         Beated
     };
     public EnemyCardState state = EnemyCardState.Closed;
-    public int Bonus => (int)(cardInfo.value == 1 ? 1 : cardInfo.value * 0.5f);
+    
     public bool isOnTheBoard;
 
     public Action OnOpened;
@@ -25,14 +26,9 @@ public class EnemyCard : MonoBehaviour
     public Action OnGetBonus;
     public Action OnAppearedOnTheBoard;
 
-    void Start()
+    public void Init(EnemyCardData data)
     {
-        cardInfo = GetComponent<CardInfo>();
-    }
-
-    void Update()
-    {
-        
+        cardData = data;
     }
 
     public void AppearOnTheBoard()
@@ -54,9 +50,9 @@ public class EnemyCard : MonoBehaviour
     {
         if (state == EnemyCardState.Opened)
         {
-            CardInfo playerCardInfo = playerCard.GetComponent<CardInfo>();
+            CardInfo playerCardData = playerCard.GetComponent<Card>().cardData.cardInfo;
 
-            if (playerCardInfo.suit == cardInfo.suit || playerCardInfo.suit == CardInfo.CardSuit.Trump)
+            if (playerCardData.suit == cardData.cardInfo.suit || playerCardData.suit == CardInfo.CardSuit.Trump)
             {
                 StartCoroutine(PlayCard(playerCard));
                 return true;
@@ -72,21 +68,21 @@ public class EnemyCard : MonoBehaviour
             yield return null;
         }
         
-        CardInfo playerCardInfo = playerCard.GetComponent<CardInfo>();
+        CardInfo playerCardData = playerCard.GetComponent<Card>().cardData.cardInfo;
         playerCardsOn.Add(playerCard);
         
-        if (playerCardInfo.value >= cardInfo.value)
+        if (playerCardData.value >= cardData.cardInfo.value)
             StartCoroutine(Beat());
         else
         {
-            cardInfo.value -= playerCardInfo.value;
+            cardData.cardInfo.value -= playerCardData.value;
             OnPlayCard?.Invoke();
         }
     }
 
     public void GetBonus()
     {
-        cardInfo.value += Bonus;
+        cardData.cardInfo.value += cardData.Bonus;
         
         OnGetBonus?.Invoke();
     }
@@ -94,12 +90,19 @@ public class EnemyCard : MonoBehaviour
     private IEnumerator Beat()
     {
         state = EnemyCardState.Beated;
-        cardInfo.value = 0;
+        cardData.cardInfo.value = 0;
 
         yield return new WaitForSeconds(0.75f);
         
         OnBeated?.Invoke();
         Destroy(gameObject);
             
+    }
+    
+    public void Delete()
+    {
+        StopAllCoroutines();
+        transform.DOKill();
+        Destroy(gameObject);
     }
 }

@@ -32,8 +32,8 @@ public class HandController : MonoBehaviour, IService
     {
         while (isAnimating)
             yield return null;
-        GameObject ntwCard = Instantiate(cardPrefab, deckPosition.position, Quaternion.identity);
-        cardsInHand.Add(ntwCard);
+        cardPrefab.transform.position = deckPosition.position;
+        cardsInHand.Add(cardPrefab);
         StartCoroutine(ArrangeCards());
         StartCoroutine(CardPickAnim());
     }

@@ -25,6 +25,7 @@ public class EnemyCardsView : MonoBehaviour
         _cardGameController = ServiceLocator.Current.Get<CardGameController>();
         _enemyCardsController = ServiceLocator.Current.Get<EnemyCardsController>();
 
+        _cardGameController.GameEnd += CardsDisappear;
         _cardGameController.GameStart += () => StartCoroutine(SetUpEnemyCards());
         _enemyCardsController.OnCardBeaten += () => StartCoroutine(ArrangeEnemyCards(0.5f));
     }
@@ -105,6 +106,17 @@ public class EnemyCardsView : MonoBehaviour
                 MoveXY(cardObj);
                 yield return null;
             }
+        }
+    }
+    
+    private void CardsDisappear()
+    {
+        List<GameObject> cards = _enemyCardsController.cardsObjects;
+        
+        foreach (GameObject card in cards)
+        {
+            EnemyCard c = card.GetComponent<EnemyCard>();
+            c.Delete();
         }
     }
 }

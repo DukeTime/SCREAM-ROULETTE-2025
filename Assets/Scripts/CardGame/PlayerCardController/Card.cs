@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 
 public class Card : MonoBehaviour
 {
-    public CardInfo cardInfo;
+    public CardData cardData;
     
     private MovebleSmoothDump moveble;
     private CardGameController _cardGameController;
@@ -22,14 +22,13 @@ public class Card : MonoBehaviour
     {
         _cardGameController = ServiceLocator.Current.Get<CardGameController>();
         moveble = GetComponent<MovebleSmoothDump>();
-        cardInfo = GetComponent<CardInfo>();
     }
 
-    void Update()
+    public void Init(CardData data)
     {
-        
+        cardData = data;
     }
-
+    
     public bool TryPlayCard(GameObject slot)
     {
         EnemyCard enemyCard = slot.GetComponent<EnemyCard>();
