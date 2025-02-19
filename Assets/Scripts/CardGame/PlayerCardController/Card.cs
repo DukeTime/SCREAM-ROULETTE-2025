@@ -52,7 +52,7 @@ public class Card : MonoBehaviour
     public void Delete()
     {
         state = CardState.NotEnabled;
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
 }

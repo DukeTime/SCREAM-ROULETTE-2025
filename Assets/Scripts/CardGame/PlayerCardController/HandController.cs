@@ -7,6 +7,7 @@ using UnityEngine;
 public class HandController : MonoBehaviour, IService
 {
     public List<GameObject> cardsInHand = new List<GameObject>();
+    public bool isAnimating;
     
     [Header("Settings")]
     [SerializeField] private float maxArcAngle = 60f; // Градус дуги (от -180 до 180)
@@ -20,7 +21,6 @@ public class HandController : MonoBehaviour, IService
     [SerializeField] private Transform deckPosition; // Позиция колоды
     
     private CardGameController _cardGameController;
-    private bool isAnimating;
 
     private void Start()
     {
@@ -41,24 +41,29 @@ public class HandController : MonoBehaviour, IService
     // Анимация распределения карт
     public IEnumerator ArrangeCards()
     {
-        isAnimating = true;
-        List<Vector3> targetPositions = CalculateCardPositions();
-        List<float> targetRotations = CalculateCardRotations();
-        
-        List<GameObject> cardsToMove = new List<GameObject>();
-
-        for (int i = 0; i < cardsInHand.Count; i++)
+        if (_cardGameController.state != CardGameController.GameState.GameEnd)
         {
-            if (!(cardsInHand[i].GetComponent<MovebleSmoothDump>().isHolding || cardsInHand[i].GetComponent<MovebleSmoothDump>().isSelected))
-                cardsToMove.Add(cardsInHand[i]);
-        }
-        for (int i = 0; i < cardsToMove.Count; i++)
-        {
-            StartCoroutine(MoveCardToPosition(cardsToMove[i], targetPositions[i], targetRotations[i]));
-        }
+            isAnimating = true;
+            List<Vector3> targetPositions = CalculateCardPositions();
+            List<float> targetRotations = CalculateCardRotations();
 
-        yield return new WaitUntil(() => !IsAnyCardMoving());
-        isAnimating = false;
+            List<GameObject> cardsToMove = new List<GameObject>();
+
+            for (int i = 0; i < cardsInHand.Count; i++)
+            {
+                if (!(cardsInHand[i].GetComponent<MovebleSmoothDump>().isHolding ||
+                      cardsInHand[i].GetComponent<MovebleSmoothDump>().isSelected))
+                    cardsToMove.Add(cardsInHand[i]);
+            }
+
+            for (int i = 0; i < cardsToMove.Count; i++)
+            {
+                StartCoroutine(MoveCardToPosition(cardsToMove[i], targetPositions[i], targetRotations[i]));
+            }
+
+            yield return new WaitUntil(() => !IsAnyCardMoving());
+            isAnimating = false;
+        }
     }
 
     private List<Vector3> CalculateCardPositions()

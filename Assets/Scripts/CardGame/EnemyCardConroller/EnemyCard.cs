@@ -103,6 +103,6 @@ public class EnemyCard : MonoBehaviour
     {
         StopAllCoroutines();
         transform.DOKill();
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
