@@ -98,8 +98,7 @@ public class EnemyCard : MonoBehaviour
         yield return new WaitForSeconds(0.75f);
         
         OnBeated?.Invoke();
-        Destroy(gameObject);
-            
+        Delete();
     }
     
     public void Delete()

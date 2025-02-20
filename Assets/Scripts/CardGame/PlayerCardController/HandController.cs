@@ -91,7 +91,7 @@ public class HandController : MonoBehaviour, IService
             float x = handCenter.x + startX + i * step;
             // Параболическая формула для вертикального смещения
             float y = handCenter.y - Mathf.Pow(x - handCenter.x, 2) * handPow + verticalOffset;
-            positions.Add(new Vector3(x, y, 1 - i * 0.01f)); // Z для порядка отрисовки
+            positions.Add(new Vector3(x, y, 0.99f - i * 0.01f)); // Z для порядка отрисовки
         }
 
         return positions;

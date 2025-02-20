@@ -47,7 +47,7 @@ public class CardGameController : MonoBehaviour, IService
     {
         if (Input.GetMouseButtonDown(1))
             DrawCard();
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetKeyDown(KeyCode.A))
             ActivateConsumable(consumables[0]);
     }
 

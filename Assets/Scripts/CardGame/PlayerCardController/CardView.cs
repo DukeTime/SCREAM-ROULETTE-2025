@@ -12,6 +12,10 @@ public class CardView : MonoBehaviour
     
     [SerializeField] private SpriteRenderer suitIcon;
     [SerializeField] private TextMeshProUGUI valueText;
+    
+    [SerializeField] private Sprite redSuitSprite;
+    [SerializeField] private Sprite blackSuitSprite;
+    [SerializeField] private Sprite trumpSuitSprite;
 
     private void Start()
     {
@@ -23,7 +27,8 @@ public class CardView : MonoBehaviour
 
     private void SynchronizeUI()
     {
-        suitIcon.color = _cardData.suit == CardInfo.CardSuit.Red ? Color.red : _cardData.suit == CardInfo.CardSuit.Black ? Color.black : Color.magenta;
+        suitIcon.sprite = _cardData.suit == CardInfo.CardSuit.Red ? redSuitSprite : 
+            _cardData.suit == CardInfo.CardSuit.Black ? blackSuitSprite : trumpSuitSprite;
         valueText.text = _cardData.value.ToString();
     }
 
