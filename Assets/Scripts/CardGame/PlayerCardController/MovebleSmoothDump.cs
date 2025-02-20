@@ -24,11 +24,11 @@ public class MovebleSmoothDump : MonoBehaviour
     private static Vector3 DEFAULT_SCALE = new Vector3(1.92f, 2.7072f, 1);
     private static Vector3 SELECTED_SCALE = new Vector3(1.92f * 1.5f, 2.7072f * 1.5f, 1);
     
-    private Collider2D collider;
+    private Collider2D _triggerCollider;
     void Start()
     {
         cardConroller = GetComponent<Card>();
-        collider = GetComponent<Collider2D>();
+        _triggerCollider = GetComponent<Collider2D>();
         targetPosition = transform.position;
         mainCamera = Camera.main;
     }
@@ -75,12 +75,12 @@ public class MovebleSmoothDump : MonoBehaviour
     public void OnMouseUp()
     {
         isHolding = false;
-        Bounds boundsA = collider.bounds;
+        Bounds boundsA = _triggerCollider.bounds;
     
         Collider[] overlaps = Physics.OverlapBox(
             boundsA.center, 
             boundsA.extents, 
-            collider.transform.rotation, 
+            _triggerCollider.transform.rotation, 
             Physics.AllLayers, 
             QueryTriggerInteraction.Collide
         );
