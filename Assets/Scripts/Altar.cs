@@ -6,7 +6,7 @@ public class Altar : MonoBehaviour
 {
     public string Upgrade; // Имя сцены для загрузки
     public GameObject pressEText; // Ссылка на текстовый объект UI, который будет отображать "Press E"
-    public FadeManager fademanager;
+    public ScreenShadowing fademanager;
     private bool isPlayerInRange = false;
     private GameObject player; // Ссылка на игрока
     private MonoBehaviour playerController; // Компонент управления игроком
@@ -88,7 +88,8 @@ public class Altar : MonoBehaviour
     private IEnumerator LoadSceneWithFade()
     {
         // Запускаем эффект затемнения
-        yield return StartCoroutine(fademanager.FadeAndLoadScene(Upgrade));
+        StartCoroutine(fademanager.ChangeScene(2));
+        yield return new WaitForSeconds(1f);
 
         // Если загрузка сцены не произошла, восстанавливаем управление и движение
         if (!string.IsNullOrEmpty(Upgrade))
