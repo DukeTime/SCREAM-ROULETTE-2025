@@ -363,11 +363,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 44267382}
   Game: Assets/eneses/Game.unity
-  fademanager: {fileID: 837620565}
+  fademanager: {fileID: 1024580889}
   enemySpeed: 5
   mainCamera: {fileID: 1852690522}
   playerRadius: 2
-  attackSound: {fileID: 8300000, guid: 4e0a165bcd0f0fa47a699a0a14517ed8, type: 3}
+  attackSound: {fileID: 0}
 --- !u!61 &44267381
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -704,11 +704,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 55057995}
   Game: Assets/eneses/Game.unity
-  fademanager: {fileID: 837620565}
+  fademanager: {fileID: 1024580889}
   enemySpeed: 5
   mainCamera: {fileID: 0}
   playerRadius: 0.5
-  attackSound: {fileID: 8300000, guid: 4e0a165bcd0f0fa47a699a0a14517ed8, type: 3}
+  attackSound: {fileID: 0}
 --- !u!61 &55057994
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2438,7 +2438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Upgrade: Assets/eneses/Upgrade.unity
   pressEText: {fileID: 1143423111}
-  fademanager: {fileID: 837620565}
+  fademanager: {fileID: 1024580889}
 --- !u!50 &301446521
 Rigidbody2D:
   serializedVersion: 5
@@ -2596,11 +2596,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 360937481}
   Game: Assets/eneses/Game.unity
-  fademanager: {fileID: 837620565}
+  fademanager: {fileID: 1024580889}
   enemySpeed: 5
   mainCamera: {fileID: 1852690522}
   playerRadius: 2
-  attackSound: {fileID: 8300000, guid: 4e0a165bcd0f0fa47a699a0a14517ed8, type: 3}
+  attackSound: {fileID: 0}
 --- !u!61 &360937480
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -45765,51 +45765,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.001, y: 0.066}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &837620564
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 837620567}
-  - component: {fileID: 837620565}
-  m_Layer: 0
-  m_Name: FadeManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &837620565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 837620564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84dae5130d39f5241be8bad8c13508f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeAnimator: {fileID: 1024580888}
---- !u!4 &837620567
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 837620564}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.6139526, y: -3.699768, z: -0.07805036}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &838468882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48958,6 +48913,7 @@ GameObject:
   - component: {fileID: 1024580887}
   - component: {fileID: 1024580886}
   - component: {fileID: 1024580888}
+  - component: {fileID: 1024580889}
   m_Layer: 5
   m_Name: FadePanel
   m_TagString: Untagged
@@ -49044,6 +49000,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1024580889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024580884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24fcf1d0590378e41a84b5507a7b56a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1029065919
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49773,7 +49741,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1863180487}
-  - {fileID: 1718700778}
   - {fileID: 888611979}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -50506,7 +50473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Upgrade: Assets/eneses/Upgrade.unity
   pressEText: {fileID: 823625044}
-  fademanager: {fileID: 837620565}
+  fademanager: {fileID: 1024580889}
 --- !u!50 &1705813152
 Rigidbody2D:
   serializedVersion: 5
@@ -50707,11 +50674,11 @@ Transform:
   m_GameObject: {fileID: 1718700777}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9244, y: 14021, z: 0}
-  m_LocalScale: {x: 30.6, y: 30.6, z: 0}
+  m_LocalPosition: {x: 45.31373, y: 68.73039, z: 0}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1274820732}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1718700779
 BoxCollider2D:
@@ -50773,7 +50740,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1718700782}
   Game: Assets/eneses/Game.unity
-  fademanager: {fileID: 837620565}
+  fademanager: {fileID: 1024580889}
   enemySpeed: 5
   mainCamera: {fileID: 1852690522}
   playerRadius: 2
@@ -94236,7 +94203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Upgrade: Assets/eneses/Upgrade.unity
   pressEText: {fileID: 1218678576}
-  fademanager: {fileID: 837620565}
+  fademanager: {fileID: 1024580889}
 --- !u!50 &8952131657225137155
 Rigidbody2D:
   serializedVersion: 5
@@ -94341,6 +94308,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 129670456}
   - {fileID: 55057996}
+  - {fileID: 1718700778}
   - {fileID: 1274820732}
   - {fileID: 2020804818}
   - {fileID: 3626866755485289063}
@@ -94399,6 +94367,5 @@ SceneRoots:
   - {fileID: 560008121}
   - {fileID: 1904391790}
   - {fileID: 268304066}
-  - {fileID: 837620567}
   - {fileID: 44267383}
   - {fileID: 362357118}
