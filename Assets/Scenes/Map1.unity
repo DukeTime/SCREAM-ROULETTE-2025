@@ -363,7 +363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 44267382}
   Game: Assets/eneses/Game.unity
-  fademanager: {fileID: 0}
+  fademanager: {fileID: 1024580889}
   enemySpeed: 5
   mainCamera: {fileID: 1852690522}
   playerRadius: 2
