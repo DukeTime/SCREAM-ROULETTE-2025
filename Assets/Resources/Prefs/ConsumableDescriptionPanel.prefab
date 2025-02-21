@@ -91,9 +91,10 @@ GameObject:
   - component: {fileID: 5434111701023898302}
   - component: {fileID: 2362294265549670050}
   - component: {fileID: 6653406475799393166}
+  - component: {fileID: 9099265934570198199}
   m_Layer: 5
   m_Name: ConsumableDescriptionPanel
-  m_TagString: Untagged
+  m_TagString: ConsumablePanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -173,6 +174,52 @@ MonoBehaviour:
   nameText: {fileID: 1980637740459715469}
   descriptionText: {fileID: 8673847223478333472}
   useButton: {fileID: 7946817863251989156}
+--- !u!61 &9099265934570198199
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2852670992924611987}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &3917690798111602551
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,11 +287,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: ae0e395c379f77d4fbf8b03113a33f28, type: 3}
-    m_FontSize: 45
+    m_FontSize: 55
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 50
+    m_MaxSize: 55
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -286,8 +333,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.7637, y: -14.9121}
-  m_SizeDelta: {x: 686.9063, y: 196.3477}
+  m_AnchoredPosition: {x: 2.7637, y: -7.5169}
+  m_SizeDelta: {x: 686.9063, y: 199.3562}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8155581693542411753
 CanvasRenderer:
@@ -345,7 +392,7 @@ GameObject:
   - component: {fileID: 7946817863251989156}
   m_Layer: 5
   m_Name: Button (Legacy)
-  m_TagString: Untagged
+  m_TagString: ConsumablePanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -367,8 +414,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.7637, y: -79}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0.0000000015716, y: -77.1}
+  m_SizeDelta: {x: 236.4673, y: 39.4847}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3176119880557357546
 CanvasRenderer:

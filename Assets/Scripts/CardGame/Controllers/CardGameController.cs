@@ -36,6 +36,7 @@ public class CardGameController : MonoBehaviour, IService
     void Start()
     {
         PlayerData.Deck = PlayerData.StartDeck; //*
+        PlayerData.Consumables = PlayerData.StartConsumables;
         
         _enemyCardsController = ServiceLocator.Current.Get<EnemyCardsController>();
         _enemyCardsController.OnAllCardsDefeated += Victory;
