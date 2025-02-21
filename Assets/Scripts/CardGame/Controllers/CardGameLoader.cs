@@ -9,6 +9,8 @@ public class CardGameLoader : MonoBehaviour
     [SerializeField] private PlayerInput playerInput;
     private void Awake()
     {
+        ServiceLocator.Initialize();
+        
         ServiceLocator.Current.Register<CardGameController>(cardGameController);
         ServiceLocator.Current.Register<HandController>(handController);
         ServiceLocator.Current.Register<EnemyCardsController>(enemyCardsController);
