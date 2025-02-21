@@ -78,6 +78,10 @@ public class CardGameController : MonoBehaviour, IService
                 ShowEnemiesCards showEnemiesCards = gameObject.AddComponent<ShowEnemiesCards>();
                 showEnemiesCards.Activate();
                 return;
+            case "Cursed mask":
+                MakeAllHand4 makeAllHand4 = gameObject.AddComponent<MakeAllHand4>();
+                makeAllHand4.Activate();
+                return;
 
         }
     }

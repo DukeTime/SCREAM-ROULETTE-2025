@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 46e75c8a3ac42314f91af0b20ccb3282
+guid: 769985d85369ea6459cecdb9d0893dda
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9131124642166990367
-    second: IMG_3354_0
+      213: -2620375872403055749
+    second: IMG_3355_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IMG_3354_0
+      name: IMG_3355_0
       rect:
         serializedVersion: 2
-        x: 536
-        y: 31
-        width: 866
-        height: 1888
+        x: 286
+        y: 239
+        width: 1663
+        height: 1700
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1e912d7448ab74180800000000000000
-      internalID: -9131124642166990367
+      spriteID: b7b5963070e82abd0800000000000000
+      internalID: -2620375872403055749
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 6d2242d9a3615874982dafdf35241fe2
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      IMG_3354_0: -9131124642166990367
+      IMG_3355_0: -2620375872403055749
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

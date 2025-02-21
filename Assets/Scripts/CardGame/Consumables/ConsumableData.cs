@@ -9,7 +9,6 @@ public class ConsumableData
     public string id = "";
     public string name = "???";
     public string description = "???";
-    public Sprite icon;
     
     public bool instant = false;
 }
