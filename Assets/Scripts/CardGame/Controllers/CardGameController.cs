@@ -35,6 +35,8 @@ public class CardGameController : MonoBehaviour, IService
     
     void Start()
     {
+        PlayerData.Deck = PlayerData.StartDeck; //*
+        
         _enemyCardsController = ServiceLocator.Current.Get<EnemyCardsController>();
         _enemyCardsController.OnAllCardsDefeated += Victory;
         
@@ -57,8 +59,9 @@ public class CardGameController : MonoBehaviour, IService
         consumables.Add(AllConsumables.All.Find(m => m.name == "The Scroll of the Ancients"));
     }
 
-    private void ActivateConsumable(ConsumableData consumable)
+    public void ActivateConsumable(ConsumableData consumable)
     {
+        consumables.Remove(consumable);
         switch (consumable.name)
         {
             case "The Scroll of the Ancients":
@@ -140,6 +143,6 @@ public class CardGameController : MonoBehaviour, IService
 
     private void LoadDeckCards()
     {
-        cardsInDeckData = PlayerData.deck;
+        cardsInDeckData = PlayerData.Deck;
     }
 }

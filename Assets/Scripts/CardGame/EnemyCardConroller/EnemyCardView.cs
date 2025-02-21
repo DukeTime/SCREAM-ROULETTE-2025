@@ -66,7 +66,8 @@ public class EnemyCardView : MonoBehaviour
     
     private void PlayCard()
     {
-        valueText.transform.DOPunchScale( Vector3.one * 0.5f, 0.2f)
+        valueText.transform.DOPunchScale(Vector3.one * -0.1f, 0.2f);
+        valueText.transform.DOPunchPosition( Vector3.down * 0.075f, 0.2f, 25, 2f)
             .OnKill(SynchronizeView);
     }
     

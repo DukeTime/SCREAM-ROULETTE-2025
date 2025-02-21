@@ -47,6 +47,7 @@ public class Card : MonoBehaviour
     private void PlayCard()
     {
         ServiceLocator.Current.Get<HandController>().cardsInHand.Remove(gameObject);
+        ServiceLocator.Current.Get<CardGameController>().cardsInHand.Remove(gameObject);
     }
 
     public void Delete()

@@ -5,7 +5,9 @@ using UnityEngine.Serialization;
 [Serializable]
 public static class PlayerData
 {
-    public static List<CardData> deck = new List<CardData>()
+    public static List<ConsumableData> Consumables = new List<ConsumableData>();
+    
+    public static List<CardData> StartDeck = new List<CardData>()
     {
         new CardData()
         {
@@ -105,5 +107,5 @@ public static class PlayerData
         },
     };
     
-    public static List<ConsumableData> Consumables = new List<ConsumableData>();
+    public static List<CardData> Deck = StartDeck;
 }
