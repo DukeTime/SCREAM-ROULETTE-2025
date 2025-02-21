@@ -82,4 +82,11 @@ public class EnemyCardView : MonoBehaviour
         valueText.transform.DOPunchScale( Vector3.one * 0.5f, 0.2f)
             .OnKill(SynchronizeView);
     }
+
+    public IEnumerator ShowCard()
+    {
+        Open();
+        yield return new WaitForSeconds(2f);
+        _animator.SetTrigger("Close");
+    }
 }

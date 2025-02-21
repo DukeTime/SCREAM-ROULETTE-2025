@@ -43,16 +43,17 @@ public class CardGameController : MonoBehaviour, IService
         _enemyCardsController.OnAllCardsDefeated += Victory;
         
         LoadDeckCards();
+        InitConsumables();
         
         StartCoroutine(EnemyMonologue());
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1))
-            DrawCard();
-        if (Input.GetKeyDown(KeyCode.A))
-            ActivateConsumable(consumables[0]);
+        // if (Input.GetMouseButtonDown(1))
+        //     DrawCard();
+        // if (Input.GetKeyDown(KeyCode.A))
+        //     ActivateConsumable(consumables[0]);
     }
 
     private void InitConsumables()
@@ -70,9 +71,12 @@ public class CardGameController : MonoBehaviour, IService
                 c.Activate();
                 return;
             case "Ritual knife":
-                Debug.Log(123);
                 DestroyEnemyOpenCard d = gameObject.AddComponent<DestroyEnemyOpenCard>();
                 d.Activate();
+                return;
+            case "Lost eye":
+                ShowEnemiesCards showEnemiesCards = gameObject.AddComponent<ShowEnemiesCards>();
+                showEnemiesCards.Activate();
                 return;
 
         }
