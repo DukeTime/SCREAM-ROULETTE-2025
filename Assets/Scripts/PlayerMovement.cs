@@ -7,47 +7,61 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
 
     private Vector2 movement;
-    private int lastDirection = 0; // 0: idle, 1: up, 2: down, 3: left, 4: right
-
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-    }
 
     void Update()
     {
         // Получаем ввод от игрока
-        float moveX = Input.GetAxisRaw("Horizontal"); // Используем GetAxisRaw для дискретного ввода
-        float moveY = Input.GetAxisRaw("Vertical");
+        float moveX = Input.GetAxisRaw("Horizontal"); // -1, 0, 1
+        float moveY = Input.GetAxisRaw("Vertical");   // -1, 0, 1
 
-        // Ограничиваем движение по диагонали
-        if (moveX != 0 && moveY != 0)
+        // Блокируем диагональное движение: приоритет у горизонтального ввода
+        if (moveX != 0) // Если есть горизонтальный ввод
         {
-            moveY = 0; // Игнорируем вертикальное движение, если есть горизонтальное
+            movement = new Vector2(moveX, 0); // Только горизонталь
         }
-
-        movement = new Vector2(moveX, moveY).normalized;
+        else // Иначе берём вертикальный ввод
+        {
+            movement = new Vector2(0, moveY); // Только вертикаль
+        }
 
         // Управление анимацией
-        if (movement.magnitude > 0)
-        {
-            if (moveY > 0) lastDirection = 1; // Вверх
-            else if (moveY < 0) lastDirection = 2; // Вниз
-            else if (moveX < 0) lastDirection = 3; // Влево
-            else if (moveX > 0) lastDirection = 4; // Вправо
-        }
-        else
-        {
-            lastDirection = 0; // Без движения
-        }
+        UpdateAnimation();
 
-        animator.SetInteger("Direction", lastDirection);
+        // Отладка: выводим текущее состояние
+        Debug.Log($"Movement: {movement}, Direction: {animator.GetInteger("Direction")}");
     }
 
     private void FixedUpdate()
     {
         // Применяем движение
         rb.linearVelocity = movement * moveSpeed;
+    }
+
+    private void UpdateAnimation()
+    {
+        // Устанавливаем анимацию в зависимости от текущего направления движения
+        if (movement.magnitude > 0)
+        {
+            if (movement.x > 0) // Вправо
+            {
+                animator.SetInteger("Direction", 4);
+            }
+            else if (movement.x < 0) // Влево
+            {
+                animator.SetInteger("Direction", 3);
+            }
+            else if (movement.y > 0) // Вверх
+            {
+                animator.SetInteger("Direction", 1);
+            }
+            else if (movement.y < 0) // Вниз
+            {
+                animator.SetInteger("Direction", 2);
+            }
+        }
+        else // Нет движения
+        {
+            animator.SetInteger("Direction", 0);
+        }
     }
 }
