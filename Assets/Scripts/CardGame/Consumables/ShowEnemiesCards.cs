@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyEnemyOpenCard : Consumable
+public class ShowEnemiesCards : Consumable
 {
     public override void Activate()
     {
@@ -9,11 +9,8 @@ public class DestroyEnemyOpenCard : Consumable
         foreach (GameObject cardObj in enemyCards)
         {
             EnemyCard card = cardObj.GetComponent<EnemyCard>();
-            if (card.state == EnemyCard.EnemyCardState.Opened)
-            {
-                StartCoroutine(card.Beat());
-                break;
-            }
+            if (card.state == EnemyCard.EnemyCardState.Closed)
+                StartCoroutine(cardObj.GetComponent<EnemyCardView>().ShowCard());
         }
     }
 }

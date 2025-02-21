@@ -17,8 +17,6 @@ public class ConsumablePanel : MonoBehaviour {
         _cardGameController = ServiceLocator.Current.Get<CardGameController>();
         _cardGameController.GameStart += StartGame;
         _image = GetComponent<Image>();
-
-        consumableDatas = PlayerData.Consumables;
     }
 
     private void StartGame()
@@ -28,6 +26,8 @@ public class ConsumablePanel : MonoBehaviour {
 
     public void UpdatePanel()
     {
+        consumableDatas = _cardGameController.consumables;
+        
         if (consumableDatas.Count == 0)
         {
             _image.enabled = false;
