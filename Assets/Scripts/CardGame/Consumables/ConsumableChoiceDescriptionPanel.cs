@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class ConsumableChoiceDescriptionPanel : MonoBehaviour 
 {
     [SerializeField] private ConsumableChoicePanel consumablePanel;
-    [SerializeField] private FadeManager fadeManager;
+    [SerializeField] private ScreenShadowing fadeManager;
     [SerializeField] private Text nameText;
     [SerializeField] private Text descriptionText;
     [SerializeField] private Button useButton;
@@ -33,7 +33,7 @@ public class ConsumableChoiceDescriptionPanel : MonoBehaviour
     // }
 
     public void Show(ConsumableData data, Vector2 position, ConsumableChoiceSlot slot) {
-        transform.localPosition = new Vector2(position.x, -145f);
+        transform.localPosition = new Vector2(position.x, -90f);
         Appear();
         nameText.text = data.name;
         descriptionText.text = data.description;
@@ -41,10 +41,10 @@ public class ConsumableChoiceDescriptionPanel : MonoBehaviour
         useButton.onClick.RemoveAllListeners();
         useButton.onClick.AddListener(() => {
             consumablePanel.BlockAllButtons();
-            StartCoroutine(fadeManager.FadeAndLoadScene("Assets/Scenes/Map1.unity"));
             PlayerData.Consumables.Add(data);
-            slot.Delete();
-            Disappear();
+            StartCoroutine(fadeManager.ChangeScene(1));
+            //slot.Delete();
+            //Disappear();
         });
     }
 

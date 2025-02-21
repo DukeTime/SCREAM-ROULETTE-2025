@@ -6,7 +6,7 @@ public class TriggerZone : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
     public string Game;
-    public FadeManager fademanager;
+    public ScreenShadowing fademanager;
     public float enemySpeed = 10f; // Скорость движения врага к игроку
     public Camera mainCamera; // Ссылка на основную камеру
     public float playerRadius = 0.5f; // Радиус модели игрока
@@ -134,7 +134,7 @@ public class TriggerZone : MonoBehaviour
         }
 
         // Затемнение и загрузка сцены
-        StartCoroutine(fademanager.FadeAndLoadScene(Game));
+        StartCoroutine(fademanager.ChangeScene(0));
     }
 
     private void RestorePlayerControl()
