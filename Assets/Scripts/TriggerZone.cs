@@ -11,10 +11,20 @@ public class TriggerZone : MonoBehaviour
     public Camera mainCamera; // Ссылка на основную камеру
     public float playerRadius = 0.5f; // Радиус модели игрока
     private GameObject player;
-    private MonoBehaviour playerController;
+    private PlayerMovement playerController; // Уточняем тип на PlayerMovement
     private Rigidbody2D playerRigidbody;
+    private Animator playerAnimator; // Animator для управления анимацией
     private bool isCapturing = false; // Флаг, указывающий, что враг ловит игрока
     private Vector3 cameraOffset; // Смещение камеры относительно игрока
+
+    private void Start()
+    {
+        // Убрали отключение spriteRenderer, чтобы враг был виден с самого начала
+        // if (spriteRenderer != null)
+        // {
+        //     spriteRenderer.enabled = false;
+        // }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -23,31 +33,37 @@ public class TriggerZone : MonoBehaviour
             player = collision.gameObject;
             playerController = player.GetComponent<PlayerMovement>();
             playerRigidbody = player.GetComponent<Rigidbody2D>();
+            playerAnimator = player.GetComponent<Animator>();
 
             // Отключаем управление игроком и останавливаем его движение
             if (playerController != null)
             {
-                playerController.enabled = false;
+                playerController.enabled = false; // Отключаем скрипт движения
             }
             if (playerRigidbody != null)
             {
-                playerRigidbody.linearVelocity = Vector2.zero;
-                playerRigidbody.isKinematic = true;
+                playerRigidbody.linearVelocity = Vector2.zero; // Сбрасываем скорость
+                playerRigidbody.isKinematic = true; // Делаем тело кинематическим
+            }
+            if (playerAnimator != null)
+            {
+                playerAnimator.SetInteger("Direction", 0); // Устанавливаем состояние покоя
+                playerAnimator.speed = 0; // Останавливаем анимацию
             }
 
-            // Включаем спрайт, если он задан
+            // Включаем спрайт врага (если он ещё не включён)
             if (spriteRenderer != null)
             {
-                spriteRenderer.enabled = true;
+                spriteRenderer.enabled = true; // Это можно убрать, если враг всегда виден
             }
 
-            // Сохраняем смещение камеры относительно игрока
+            // Сохраняем смещение камеры
             if (mainCamera != null)
             {
                 cameraOffset = mainCamera.transform.position - player.transform.position;
             }
 
-            // Запускаем процесс поимки игрока
+            // Запускаем процесс поимки
             StartCoroutine(CapturePlayer());
         }
     }
@@ -59,35 +75,41 @@ public class TriggerZone : MonoBehaviour
         // Отвязываем камеру от игрока
         if (mainCamera != null)
         {
-            mainCamera.transform.parent = null; // Отвязываем камеру от игрока
+            mainCamera.transform.parent = null;
         }
 
-        // Перемещаем камеру на врага
+        // Плавно перемещаем камеру к врагу
         if (mainCamera != null)
         {
-            mainCamera.transform.position = new Vector3(transform.position.x, transform.position.y, mainCamera.transform.position.z);
+            Vector3 targetCameraPosition = new Vector3(transform.position.x, transform.position.y, mainCamera.transform.position.z);
+            float cameraMoveTime = 1f;
+            float elapsedTime = 0f;
+            Vector3 startCameraPosition = mainCamera.transform.position;
+
+            while (elapsedTime < cameraMoveTime)
+            {
+                elapsedTime += Time.deltaTime;
+                mainCamera.transform.position = Vector3.Lerp(startCameraPosition, targetCameraPosition, elapsedTime / cameraMoveTime);
+                yield return null;
+            }
+            mainCamera.transform.position = targetCameraPosition;
         }
 
-        // Ждем 2 секунды перед началом движения врага
+        // Ждем перед началом движения врага
         yield return new WaitForSeconds(2f);
 
-        // Двигаем врага к игроку, но не ближе чем на радиус модели игрока
+        // Двигаем врага к игроку
         while (isCapturing)
         {
-            // Вычисляем направление к игроку
             Vector2 direction = (player.transform.position - transform.position).normalized;
-
-            // Вычисляем расстояние до игрока
             float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
 
-            // Если враг находится на расстоянии больше радиуса модели игрока, двигаемся к игроку
             if (distanceToPlayer > playerRadius)
             {
                 transform.Translate(direction * enemySpeed * Time.deltaTime);
             }
             else
             {
-                // Если враг достиг радиуса модели игрока, останавливаемся
                 isCapturing = false;
                 break;
             }
@@ -95,29 +117,31 @@ public class TriggerZone : MonoBehaviour
             yield return null;
         }
 
-        // Затемняем экран и загружаем сцену
+        // Затемнение и загрузка сцены
         StartCoroutine(fademanager.FadeAndLoadScene(Game));
     }
 
     private void RestorePlayerControl()
     {
-        // Восстанавливаем управление
+        // Восстанавливаем управление игроком
         if (playerController != null)
         {
             playerController.enabled = true;
         }
-
-        // Восстанавливаем Rigidbody2D
         if (playerRigidbody != null)
         {
             playerRigidbody.isKinematic = false;
         }
+        if (playerAnimator != null)
+        {
+            playerAnimator.speed = 1; // Возобновляем анимацию
+        }
 
-        // Возвращаем камеру к игроку (если нужно)
+        // Привязываем камеру обратно к игроку
         if (mainCamera != null && player != null)
         {
-            mainCamera.transform.parent = player.transform; // Привязываем камеру обратно к игроку
-            mainCamera.transform.localPosition = cameraOffset; // Восстанавливаем смещение камеры
+            mainCamera.transform.parent = player.transform;
+            mainCamera.transform.localPosition = cameraOffset;
         }
     }
 
@@ -125,8 +149,18 @@ public class TriggerZone : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            // Восстанавливаем управление и движение, если игрок вышел из зоны
+            // Останавливаем процесс поимки
+            StopCoroutine(CapturePlayer());
+            isCapturing = false;
+
+            // Восстанавливаем управление
             RestorePlayerControl();
+
+            // Выключаем спрайт врага (если нужно, чтобы он исчезал при выходе)
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.enabled = false; // Оставляем или убираем в зависимости от логики
+            }
         }
     }
 }
