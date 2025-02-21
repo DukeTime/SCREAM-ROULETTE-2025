@@ -2894,7 +2894,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultMusic: {fileID: 8300000, guid: 716199bad5aaf9c469dce5c72ec9784f, type: 3}
   gameMusic: {fileID: 8300000, guid: c2177b5c99b298446924308ae50aaa9e, type: 3}
-  gameSceneName: Assets/eneses/Game.unity
+  gameSceneNames:
+  - Game
+  - Game 1
+  - Game 2
+  - Game 3
 --- !u!82 &362357117
 AudioSource:
   m_ObjectHideFlags: 0
