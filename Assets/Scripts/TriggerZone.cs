@@ -10,6 +10,9 @@ public class TriggerZone : MonoBehaviour
     public float enemySpeed = 10f; // Скорость движения врага к игроку
     public Camera mainCamera; // Ссылка на основную камеру
     public float playerRadius = 0.5f; // Радиус модели игрока
+    public AudioClip attackSound; // Звуковой файл для нападения
+    private AudioSource audioSource; // Компонент для воспроизведения звука
+
     private GameObject player;
     private PlayerMovement playerController; // Уточняем тип на PlayerMovement
     private Rigidbody2D playerRigidbody;
@@ -19,6 +22,13 @@ public class TriggerZone : MonoBehaviour
 
     private void Start()
     {
+        // Получаем или добавляем AudioSource
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
         // Убрали отключение spriteRenderer, чтобы враг был виден с самого начала
         // if (spriteRenderer != null)
         // {
@@ -55,6 +65,12 @@ public class TriggerZone : MonoBehaviour
             if (spriteRenderer != null)
             {
                 spriteRenderer.enabled = true; // Это можно убрать, если враг всегда виден
+            }
+
+            // Воспроизводим звук нападения
+            if (attackSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(attackSound); // Воспроизводим звук один раз
             }
 
             // Сохраняем смещение камеры
