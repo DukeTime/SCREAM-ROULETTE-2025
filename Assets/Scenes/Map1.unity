@@ -704,7 +704,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 55057995}
   Game: Assets/eneses/Game.unity
-  fademanager: {fileID: 0}
+  fademanager: {fileID: 1024580889}
   enemySpeed: 5
   mainCamera: {fileID: 0}
   playerRadius: 0.5
@@ -2597,7 +2597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 360937481}
   Game: Assets/eneses/Game.unity
-  fademanager: {fileID: 0}
+  fademanager: {fileID: 1024580889}
   enemySpeed: 5
   mainCamera: {fileID: 1852690522}
   playerRadius: 2
@@ -50841,7 +50841,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1718700782}
   Game: Assets/eneses/Game.unity
-  fademanager: {fileID: 0}
+  fademanager: {fileID: 1024580889}
   enemySpeed: 5
   mainCamera: {fileID: 1852690522}
   playerRadius: 2
