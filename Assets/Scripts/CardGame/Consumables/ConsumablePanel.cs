@@ -26,12 +26,15 @@ public class ConsumablePanel : MonoBehaviour {
         UpdatePanel();
     }
 
-    public void UpdatePanel() {
+    public void UpdatePanel()
+    {
         if (consumableDatas.Count == 0)
         {
             _image.enabled = false;
             return;
         }
+        else
+            _image.enabled = true;
         
         foreach (Transform child in transform) Destroy(child.gameObject);
         

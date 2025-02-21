@@ -57,7 +57,6 @@ public class CardGameController : MonoBehaviour, IService
     private void InitConsumables()
     {
         consumables = PlayerData.Consumables;
-        consumables.Add(AllConsumables.All.Find(m => m.name == "The Scroll of the Ancients"));
     }
 
     public void ActivateConsumable(ConsumableData consumable)

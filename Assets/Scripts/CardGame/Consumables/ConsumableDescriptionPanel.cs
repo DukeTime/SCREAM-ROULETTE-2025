@@ -49,7 +49,7 @@ public class ConsumableDescriptionPanel : MonoBehaviour
         useButton.onClick.AddListener(() => {
             _cardGameController.ActivateConsumable(data);
             if (PlayerData.Consumables.Count == 0)
-                consumablePanel.gameObject.SetActive(false); 
+                consumablePanel.gameObject.GetComponent<Image>().enabled = false; 
             slot.Delete();
             Disappear();
         });
