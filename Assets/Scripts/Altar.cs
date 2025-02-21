@@ -4,6 +4,7 @@ using System.Collections;
 
 public class Altar : MonoBehaviour
 {
+    public int id = 0;
     public string Upgrade; // Имя сцены для загрузки
     public GameObject pressEText; // Ссылка на текстовый объект UI, который будет отображать "Press E"
     public ScreenShadowing fademanager;
@@ -11,6 +12,14 @@ public class Altar : MonoBehaviour
     private GameObject player; // Ссылка на игрока
     private MonoBehaviour playerController; // Компонент управления игроком
     private Rigidbody2D playerRigidbody; // Компонент Rigidbody2D игрока
+
+    private void OnEnable()
+    {
+        if (id < GameStateManager.Instance.altars)
+        {
+            gameObject.SetActive(false);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -46,6 +55,9 @@ public class Altar : MonoBehaviour
     {
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
+            GameStateManager.Instance.playerPosition = transform.position;
+            GameStateManager.Instance.altars++;
+            
             // Блокируем управление и останавливаем движение
             DisablePlayerControl();
 

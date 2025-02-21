@@ -2436,6 +2436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8969ec70f77b201408b89a49889ac003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   Upgrade: Assets/eneses/Upgrade.unity
   pressEText: {fileID: 1143423111}
   fademanager: {fileID: 1024580889}
@@ -49573,6 +49574,53 @@ RectTransform:
   m_AnchoredPosition: {x: -0.001, y: 0.066}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1223413268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1223413270}
+  - component: {fileID: 1223413269}
+  m_Layer: 0
+  m_Name: GameStateManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1223413269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223413268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5381422dd278442ebeea80b148f491ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPosition: {x: 0, y: 0, z: 0}
+  enemies: 0
+  altars: 0
+--- !u!4 &1223413270
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223413268}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.680859, y: 21.398563, z: -0.084673256}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1234714298
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50572,6 +50620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8969ec70f77b201408b89a49889ac003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   Upgrade: Assets/eneses/Upgrade.unity
   pressEText: {fileID: 823625044}
   fademanager: {fileID: 1024580889}
@@ -94302,6 +94351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8969ec70f77b201408b89a49889ac003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   Upgrade: Assets/eneses/Upgrade.unity
   pressEText: {fileID: 1218678576}
   fademanager: {fileID: 1024580889}
@@ -94470,3 +94520,4 @@ SceneRoots:
   - {fileID: 268304066}
   - {fileID: 44267383}
   - {fileID: 362357118}
+  - {fileID: 1223413270}

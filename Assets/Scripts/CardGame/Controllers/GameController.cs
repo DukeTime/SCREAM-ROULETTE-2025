@@ -8,9 +8,24 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-public class GameController : MonoBehaviour, IService
+public class GameStateManager : MonoBehaviour
 {
-    public Vector3 lastPosition;
-    public int beatedEnemies;
-    public int beatedAltars;
+    public static GameStateManager Instance;
+    
+    public Vector3 playerPosition;
+    public int enemies;
+    public int altars;// Уникальный идентификатор врага
+    
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 }

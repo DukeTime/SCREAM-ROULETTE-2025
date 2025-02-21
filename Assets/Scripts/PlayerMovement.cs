@@ -8,6 +8,12 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 movement;
 
+    private void OnEnable()
+    {
+        // Восстановление позиции при возврате на карту
+        transform.position = GameStateManager.Instance.playerPosition;
+    }
+    
     void Update()
     {
         // Получаем ввод от игрока

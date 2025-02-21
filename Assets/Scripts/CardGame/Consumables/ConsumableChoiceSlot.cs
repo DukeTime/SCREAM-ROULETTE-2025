@@ -30,15 +30,15 @@ public class ConsumableChoiceSlot : MonoBehaviour
         // Загрузка спрайта
         Sprite loadedSprite = Resources.Load<Sprite>(path);
         
-        if (loadedSprite != null)
-        {
-            Debug.Log("Спрайт загружен успешно!");
-            // Используйте loadedSprite (например: GetComponent<SpriteRenderer>().sprite = loadedSprite)
-        }
-        else
-        {
-            Debug.LogError($"Спрайт '{spriteName}' не найден по пути: {path}");
-        }
+        // if (loadedSprite != null)
+        // {
+        //     Debug.Log("Спрайт загружен успешно!");
+        //     // Используйте loadedSprite (например: GetComponent<SpriteRenderer>().sprite = loadedSprite)
+        // }
+        // else
+        // {
+        //     Debug.LogError($"Спрайт '{spriteName}' не найден по пути: {path}");
+        // }
 
         return loadedSprite;
     }

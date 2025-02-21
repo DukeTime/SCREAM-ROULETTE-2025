@@ -4,6 +4,7 @@ using System.Collections;
 
 public class TriggerZone : MonoBehaviour
 {
+    public int id;
     public SpriteRenderer spriteRenderer;
     public string Game;
     public ScreenShadowing fademanager;
@@ -21,6 +22,15 @@ public class TriggerZone : MonoBehaviour
     private Vector3 cameraOffset; // Смещение камеры относительно игрока
     private bool hasPlayedSound = false; // Флаг для воспроизведения звука один раз
 
+    
+    private void OnEnable()
+    {
+        if (id < GameStateManager.Instance.enemies)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+    
     private void Start()
     {
         // Получаем или добавляем AudioSource
@@ -43,6 +53,9 @@ public class TriggerZone : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
+            GameStateManager.Instance.playerPosition = transform.position;
+            GameStateManager.Instance.enemies++;
+            
             Debug.Log("Player tag confirmed as 'Player'"); // Отладка: подтверждаем тег
 
             player = collision.gameObject;

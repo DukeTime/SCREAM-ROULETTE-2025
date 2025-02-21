@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class ScreenShadowing : MonoBehaviour
 {
     private Animator _animator;
-    private GameController _gameController;
     
     void Start()
     {
