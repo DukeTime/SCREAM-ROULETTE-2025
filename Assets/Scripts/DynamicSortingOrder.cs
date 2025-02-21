@@ -33,8 +33,7 @@ public class DynamicSortingOrder : MonoBehaviour
                 spriteRenderer.sortingOrder = baseOrder + 1; // Передний план (выше, чтобы объект был сверху)
             }
 
-            // Отладка: выводим текущие значения для проверки
-            Debug.Log($"Object Y: {objectY}, Player Y: {playerY}, Sorting Order: {spriteRenderer.sortingOrder}");
+            
         }
     }
 }

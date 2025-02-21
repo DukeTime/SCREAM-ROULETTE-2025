@@ -27,8 +27,6 @@ public class PlayerMovement : MonoBehaviour
         // Управление анимацией
         UpdateAnimation();
 
-        // Отладка: выводим текущее состояние
-        Debug.Log($"Movement: {movement}, Direction: {animator.GetInteger("Direction")}");
     }
 
     private void FixedUpdate()
