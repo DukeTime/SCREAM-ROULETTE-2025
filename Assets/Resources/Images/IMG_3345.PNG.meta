@@ -122,28 +122,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IMG_3345_0
-      rect:
-        serializedVersion: 2
-        x: 648
-        y: 481
-        width: 8
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 432ffcdd6117cc220800000000000000
-      internalID: 2507503435563135540
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: IMG_3345_1
       rect:
         serializedVersion: 2
@@ -152,7 +130,7 @@ TextureImporter:
         width: 691
         height: 954
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -165,55 +143,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: IMG_3345_2
-      rect:
-        serializedVersion: 2
-        x: 429
-        y: 419
-        width: 22
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b0cc86b6937840050800000000000000
-      internalID: 5765882103625993227
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IMG_3345_3
-      rect:
-        serializedVersion: 2
-        x: 278
-        y: 205
-        width: 44
-        height: 169
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 720e9038e3fea7890800000000000000
-      internalID: -7459386781020331993
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 776d8009d1e858d46a8316a2cc8f5abc
     internalID: 0
     vertices: []
     indices: 
