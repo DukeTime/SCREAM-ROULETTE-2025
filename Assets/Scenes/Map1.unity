@@ -361,6 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680711cd75121a142885bd5cf9f7fab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   spriteRenderer: {fileID: 44267382}
   Game: Assets/eneses/Game.unity
   fademanager: {fileID: 1024580889}
@@ -702,6 +703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680711cd75121a142885bd5cf9f7fab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   spriteRenderer: {fileID: 55057995}
   Game: Assets/eneses/Game.unity
   fademanager: {fileID: 1024580889}
@@ -1195,7 +1197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd99633951ae2f4db2d8148a3661d4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 4
   rb: {fileID: 129670458}
   animator: {fileID: 129670460}
 --- !u!95 &129670460
@@ -2596,6 +2598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680711cd75121a142885bd5cf9f7fab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   spriteRenderer: {fileID: 360937481}
   Game: Assets/eneses/Game.unity
   fademanager: {fileID: 1024580889}
@@ -50892,6 +50895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680711cd75121a142885bd5cf9f7fab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   spriteRenderer: {fileID: 1718700782}
   Game: Assets/eneses/Game.unity
   fademanager: {fileID: 1024580889}

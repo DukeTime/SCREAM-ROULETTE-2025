@@ -9,6 +9,15 @@ EditorBuildSettings:
     path: Assets/eneses/Game.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
+    path: Assets/eneses/Game 1.unity
+    guid: 23c534627855c694db86685af33eb132
+  - enabled: 1
+    path: Assets/eneses/Game 2.unity
+    guid: 9c7cde33520a0b040bd16d6487cfc7db
+  - enabled: 1
+    path: Assets/eneses/Game 3.unity
+    guid: 7cf39e0e7656c2b4d8ba5bc0395477d2
+  - enabled: 1
     path: Assets/Scenes/Map1.unity
     guid: de431b54d22f27d4fbe6eeb1a0b9aab2
   - enabled: 1

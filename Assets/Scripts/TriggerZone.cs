@@ -154,7 +154,7 @@ public class TriggerZone : MonoBehaviour
         }
 
         // Затемнение и загрузка сцены
-        StartCoroutine(fademanager.ChangeScene(0));
+        StartCoroutine(fademanager.ChangeScene(id));
     }
 
     private void RestorePlayerControl()

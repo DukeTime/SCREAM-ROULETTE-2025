@@ -574,17 +574,14 @@ MonoBehaviour:
   - id: 1
     name: 1
     description: 1
-    icon: {fileID: 4159303093108257394, guid: d917dd62ea8ab9f4e9a40ca50ced8490, type: 3}
     instant: 0
   - id: 1
     name: 1
     description: 1
-    icon: {fileID: 4159303093108257394, guid: d917dd62ea8ab9f4e9a40ca50ced8490, type: 3}
     instant: 0
   - id: 1
     name: 1
     description: 1
-    icon: {fileID: 4159303093108257394, guid: d917dd62ea8ab9f4e9a40ca50ced8490, type: 3}
     instant: 0
 --- !u!114 &275155581
 MonoBehaviour:
@@ -1529,11 +1526,6 @@ MonoBehaviour:
       cardInfo:
         value: 6
         suit: 2
-      bonus: 1
-    - id: 
-      cardInfo:
-        value: 7
-        suit: 0
       bonus: 1
   cardDefaultPrefab: {fileID: 2195166058263279351, guid: 956cbae511558944dbadc87feb4faf3a, type: 3}
 --- !u!4 &1113215233
