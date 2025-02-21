@@ -363,11 +363,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 44267382}
   Game: Assets/eneses/Game.unity
-  fademanager: {fileID: 1024580889}
+  fademanager: {fileID: 0}
   enemySpeed: 5
   mainCamera: {fileID: 1852690522}
   playerRadius: 2
-  attackSound: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: f62755f69040e534ca957868ce0501b8, type: 3}
 --- !u!61 &44267381
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -494,8 +494,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4e0a165bcd0f0fa47a699a0a14517ed8, type: 3}
-  m_Resource: {fileID: 8300000, guid: 4e0a165bcd0f0fa47a699a0a14517ed8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f62755f69040e534ca957868ce0501b8, type: 3}
+  m_Resource: {fileID: 8300000, guid: f62755f69040e534ca957868ce0501b8, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.7
   m_Pitch: 1
@@ -704,7 +704,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 55057995}
   Game: Assets/eneses/Game.unity
-  fademanager: {fileID: 1024580889}
+  fademanager: {fileID: 0}
   enemySpeed: 5
   mainCamera: {fileID: 0}
   playerRadius: 0.5
@@ -2575,6 +2575,7 @@ GameObject:
   - component: {fileID: 360937480}
   - component: {fileID: 360937479}
   - component: {fileID: 360937483}
+  - component: {fileID: 360937484}
   m_Layer: 0
   m_Name: Circle (1)
   m_TagString: Untagged
@@ -2596,11 +2597,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 360937481}
   Game: Assets/eneses/Game.unity
-  fademanager: {fileID: 1024580889}
+  fademanager: {fileID: 0}
   enemySpeed: 5
   mainCamera: {fileID: 1852690522}
   playerRadius: 2
-  attackSound: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: 4e0a165bcd0f0fa47a699a0a14517ed8, type: 3}
 --- !u!61 &360937480
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2763,6 +2764,103 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 6.334483, y: 8.167934}
   m_EdgeRadius: 0
+--- !u!82 &360937484
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360937478}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 4e0a165bcd0f0fa47a699a0a14517ed8, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.7
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &362357115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2793,6 +2891,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d05dabf094d8fff4cb0a55aca6f814bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMusic: {fileID: 8300000, guid: 716199bad5aaf9c469dce5c72ec9784f, type: 3}
+  gameMusic: {fileID: 8300000, guid: c2177b5c99b298446924308ae50aaa9e, type: 3}
+  gameSceneName: Assets/eneses/Game.unity
 --- !u!82 &362357117
 AudioSource:
   m_ObjectHideFlags: 0
@@ -50740,7 +50841,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1718700782}
   Game: Assets/eneses/Game.unity
-  fademanager: {fileID: 1024580889}
+  fademanager: {fileID: 0}
   enemySpeed: 5
   mainCamera: {fileID: 1852690522}
   playerRadius: 2

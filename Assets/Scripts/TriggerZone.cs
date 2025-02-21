@@ -6,7 +6,7 @@ public class TriggerZone : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
     public string Game;
-    public ScreenShadowing fademanager;
+    public FadeManager fademanager;
     public float enemySpeed = 10f; // Скорость движения врага к игроку
     public Camera mainCamera; // Ссылка на основную камеру
     public float playerRadius = 0.5f; // Радиус модели игрока
@@ -19,6 +19,7 @@ public class TriggerZone : MonoBehaviour
     private Animator playerAnimator; // Animator для управления анимацией
     private bool isCapturing = false; // Флаг, указывающий, что враг ловит игрока
     private Vector3 cameraOffset; // Смещение камеры относительно игрока
+    private bool hasPlayedSound = false; // Флаг для воспроизведения звука один раз
 
     private void Start()
     {
@@ -38,8 +39,12 @@ public class TriggerZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Player entered trigger zone"); // Отладка: проверяем, срабатывает ли триггер
+
         if (collision.CompareTag("Player"))
         {
+            Debug.Log("Player tag confirmed as 'Player'"); // Отладка: подтверждаем тег
+
             player = collision.gameObject;
             playerController = player.GetComponent<PlayerMovement>();
             playerRigidbody = player.GetComponent<Rigidbody2D>();
@@ -67,10 +72,12 @@ public class TriggerZone : MonoBehaviour
                 spriteRenderer.enabled = true; // Это можно убрать, если враг всегда виден
             }
 
-            // Воспроизводим звук нападения
-            if (attackSound != null && audioSource != null)
+            // Воспроизводим звук нападения, если ещё не проигран
+            if (attackSound != null && audioSource != null && !hasPlayedSound)
             {
-                audioSource.PlayOneShot(attackSound); // Воспроизводим звук один раз
+                Debug.Log("Playing attack sound"); // Отладка: проверяем, доходит ли до воспроизведения
+                audioSource.PlayOneShot(attackSound);
+                hasPlayedSound = true;
             }
 
             // Сохраняем смещение камеры
@@ -134,7 +141,7 @@ public class TriggerZone : MonoBehaviour
         }
 
         // Затемнение и загрузка сцены
-        StartCoroutine(fademanager.ChangeScene(0));
+        StartCoroutine(fademanager.FadeAndLoadScene(Game));
     }
 
     private void RestorePlayerControl()
@@ -171,6 +178,9 @@ public class TriggerZone : MonoBehaviour
 
             // Восстанавливаем управление
             RestorePlayerControl();
+
+            // Сбрасываем флаг звука при выходе
+            hasPlayedSound = false;
 
             // Выключаем спрайт врага (если нужно, чтобы он исчезал при выходе)
             if (spriteRenderer != null)
