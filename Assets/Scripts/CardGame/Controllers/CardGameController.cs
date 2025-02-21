@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -64,10 +65,16 @@ public class CardGameController : MonoBehaviour, IService
         consumables.Remove(consumable);
         switch (consumable.name)
         {
-            case "The Scroll of the Ancients":
+            case "Earth totem":
                 MakeAllHandTrump c = gameObject.AddComponent<MakeAllHandTrump>();
                 c.Activate();
                 return;
+            case "Ritual knife":
+                Debug.Log(123);
+                DestroyEnemyOpenCard d = gameObject.AddComponent<DestroyEnemyOpenCard>();
+                d.Activate();
+                return;
+
         }
     }
 

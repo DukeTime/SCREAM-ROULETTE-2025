@@ -90,7 +90,7 @@ public class EnemyCard : MonoBehaviour
         cardData.bonus = (int)(cardData.cardInfo.value == 1 ? 1 : cardData.cardInfo.value * 0.5f);
     }
 
-    private IEnumerator Beat()
+    public IEnumerator Beat()
     {
         state = EnemyCardState.Beated;
         cardData.cardInfo.value = 0;
