@@ -7,7 +7,7 @@ public static class PlayerData
 {
     public static List<ConsumableData> StartConsumables = new List<ConsumableData>()
     {
-        AllConsumables.All.Find(m => m.id == "2"),
+        AllConsumables.All.Find(m => m.id == "4"),
         AllConsumables.All.Find(m => m.id == "2"),
         AllConsumables.All.Find(m => m.id == "1"),
         AllConsumables.All.Find(m => m.id == "3"),
