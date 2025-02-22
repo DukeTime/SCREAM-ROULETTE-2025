@@ -16,6 +16,7 @@ public class CardGameController : MonoBehaviour, IService
     public int startCountOfCards = 5;
 
     public bool tutorial = false;
+    public bool boss = false;
     public List<GameObject> panels;
     
     public Action GameStart;
@@ -39,9 +40,6 @@ public class CardGameController : MonoBehaviour, IService
     
     void Start()
     {
-        PlayerData.Deck = PlayerData.StartDeck; //*
-        PlayerData.Consumables = PlayerData.StartConsumables;
-        
         _enemyCardsController = ServiceLocator.Current.Get<EnemyCardsController>();
         _enemyCardsController.OnAllCardsDefeated += Victory;
         

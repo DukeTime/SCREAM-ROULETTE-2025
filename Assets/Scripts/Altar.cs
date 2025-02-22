@@ -100,7 +100,7 @@ public class Altar : MonoBehaviour
     private IEnumerator LoadSceneWithFade()
     {
         // Запускаем эффект затемнения
-        StartCoroutine(fademanager.ChangeScene(5));
+        StartCoroutine(fademanager.ChangeScene(6));
         yield return new WaitForSeconds(1f);
 
         // Если загрузка сцены не произошла, восстанавливаем управление и движение

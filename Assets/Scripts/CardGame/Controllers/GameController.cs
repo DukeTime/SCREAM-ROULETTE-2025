@@ -28,4 +28,11 @@ public class GameStateManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void Reset()
+    {
+        playerPosition = new Vector3(-1, 0, 0);
+        enemies = 0;
+        altars = 0;
+    }
 }
