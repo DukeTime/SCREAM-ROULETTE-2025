@@ -13,7 +13,7 @@ public class Altar : MonoBehaviour
     private MonoBehaviour playerController; // Компонент управления игроком
     private Rigidbody2D playerRigidbody; // Компонент Rigidbody2D игрока
 
-    private void OnEnable()
+    private void Start()
     {
         if (id < GameStateManager.Instance.altars)
         {

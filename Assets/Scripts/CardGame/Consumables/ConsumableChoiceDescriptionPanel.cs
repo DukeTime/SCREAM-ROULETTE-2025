@@ -40,10 +40,10 @@ public class ConsumableChoiceDescriptionPanel : MonoBehaviour
         
         useButton.onClick.RemoveAllListeners();
         useButton.onClick.AddListener(() => {
+            useButton.enabled = false;
             consumablePanel.BlockAllButtons();
             PlayerData.Consumables.Add(data);
-            StartCoroutine(fadeManager.ChangeScene(1));
-            //slot.Delete();
+            StartCoroutine(fadeManager.ChangeScene(5));
             //Disappear();
         });
     }

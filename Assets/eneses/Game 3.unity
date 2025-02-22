@@ -1005,7 +1005,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1620,7 +1620,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2026,23 +2026,28 @@ MonoBehaviour:
     deck:
     - id: 
       cardInfo:
-        value: 1
+        value: 12
         suit: 0
       bonus: 1
     - id: 
       cardInfo:
-        value: 1
+        value: 7
         suit: 1
       bonus: 1
     - id: 
       cardInfo:
-        value: 1
-        suit: 2
+        value: 12
+        suit: 1
       bonus: 1
     - id: 
       cardInfo:
-        value: 1
+        value: 7
         suit: 0
+      bonus: 1
+    - id: 
+      cardInfo:
+        value: 7
+        suit: 2
       bonus: 1
   cardDefaultPrefab: {fileID: 2195166058263279351, guid: 956cbae511558944dbadc87feb4faf3a, type: 3}
 --- !u!4 &1113215233
@@ -3205,7 +3210,7 @@ Transform:
   m_GameObject: {fileID: 1775870568}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.5}
+  m_LocalPosition: {x: 0.05, y: 0.1, z: -0.5}
   m_LocalScale: {x: 10.214958, y: 13.333331, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3341,8 +3346,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardsInDeckData: []
   cardsInHand: []
-  consumables: []
-  startCountOfCards: 5
+  consumables:
+  - id: 1
+    name: 1
+    description: 
+    instant: 0
+  - id: 2
+    name: 2
+    description: 
+    instant: 0
+  - id: 3
+    name: 3
+    description: 
+    instant: 0
+  startCountOfCards: 6
   tutorial: 0
   boss: 1
   panels: []

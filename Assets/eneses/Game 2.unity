@@ -1522,7 +1522,7 @@ GameObject:
   - component: {fileID: 688394766}
   - component: {fileID: 688394765}
   m_Layer: 5
-  m_Name: Canvas (1)
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1934,22 +1934,27 @@ MonoBehaviour:
     deck:
     - id: 
       cardInfo:
-        value: 8
-        suit: 0
-      bonus: 1
-    - id: 
-      cardInfo:
-        value: 10
-        suit: 1
-      bonus: 1
-    - id: 
-      cardInfo:
-        value: 6
+        value: 5
         suit: 2
       bonus: 1
     - id: 
       cardInfo:
         value: 7
+        suit: 1
+      bonus: 1
+    - id: 
+      cardInfo:
+        value: 6
+        suit: 1
+      bonus: 1
+    - id: 
+      cardInfo:
+        value: 10
+        suit: 0
+      bonus: 1
+    - id: 
+      cardInfo:
+        value: 5
         suit: 0
       bonus: 1
   cardDefaultPrefab: {fileID: 2195166058263279351, guid: 956cbae511558944dbadc87feb4faf3a, type: 3}
@@ -2476,7 +2481,7 @@ Transform:
   m_GameObject: {fileID: 1298951625}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.5}
+  m_LocalPosition: {x: 0.05, y: 0.1, z: -0.5}
   m_LocalScale: {x: 10.214958, y: 13.333331, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3168,7 +3173,7 @@ MonoBehaviour:
   cardsInDeckData: []
   cardsInHand: []
   consumables: []
-  startCountOfCards: 5
+  startCountOfCards: 6
   tutorial: 0
   boss: 0
   panels: []

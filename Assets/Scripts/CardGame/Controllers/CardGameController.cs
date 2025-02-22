@@ -44,6 +44,8 @@ public class CardGameController : MonoBehaviour, IService
         _enemyCardsController = ServiceLocator.Current.Get<EnemyCardsController>();
         _enemyCardsController.OnAllCardsDefeated += Victory;
         
+        PlayerData.Deck = PlayerData.StartDeck;
+        
         LoadDeckCards();
         InitConsumables();
         
@@ -143,6 +145,7 @@ public class CardGameController : MonoBehaviour, IService
         DrawCard(3);
         _enemyCardsController.Turn();
         state = GameState.PlayerTurn;
+        sdfg.View(cardsInDeckData.Count);
     }
 
     public void DrawCard(int count = 1)

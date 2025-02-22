@@ -2171,13 +2171,8 @@ MonoBehaviour:
       bonus: 1
     - id: 
       cardInfo:
-        value: 6
-        suit: 2
-      bonus: 1
-    - id: 
-      cardInfo:
         value: 7
-        suit: 0
+        suit: 2
       bonus: 1
   cardDefaultPrefab: {fileID: 2195166058263279351, guid: 956cbae511558944dbadc87feb4faf3a, type: 3}
 --- !u!4 &1113215233
@@ -2628,7 +2623,7 @@ Transform:
   m_GameObject: {fileID: 1293730850}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.5}
+  m_LocalPosition: {x: 0.05, y: 0.2, z: -0.5}
   m_LocalScale: {x: 10.214958, y: 13.333331, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3093,7 +3088,7 @@ MonoBehaviour:
   cardsInDeckData: []
   cardsInHand: []
   consumables: []
-  startCountOfCards: 5
+  startCountOfCards: 6
   tutorial: 0
   boss: 0
   panels: []
