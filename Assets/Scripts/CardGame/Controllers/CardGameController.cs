@@ -29,6 +29,7 @@ public class CardGameController : MonoBehaviour, IService
     private EnemyCardsView _enemyCardsView;
     
     [SerializeField] private GameObject cardDefaultPrefab;
+    [SerializeField] private DeckView sdfg;
     
     public enum GameState
     {
@@ -138,6 +139,7 @@ public class CardGameController : MonoBehaviour, IService
     public void EndTurn()
     {
         state = GameState.EnemyTurn;
+        sdfg.View(cardsInDeckData.Count - 1);
         DrawCard(3);
         _enemyCardsController.Turn();
         state = GameState.PlayerTurn;
