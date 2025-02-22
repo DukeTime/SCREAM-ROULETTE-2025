@@ -14,6 +14,9 @@ public class CardGameController : MonoBehaviour, IService
     public List<GameObject> cardsInHand;
     public List<ConsumableData> consumables;
     public int startCountOfCards = 5;
+
+    public bool tutorial = false;
+    public List<GameObject> panels;
     
     public Action GameStart;
     public Action GameEnd;
@@ -103,8 +106,24 @@ public class CardGameController : MonoBehaviour, IService
         MonologueEnd?.Invoke();
         
         yield return new WaitForSeconds(1.5f);
-        
+
         StartGame();
+    }
+
+    private IEnumerator Tutorial()
+    {
+        foreach (GameObject panel in panels)
+        {
+            panel.SetActive(true);
+            yield return null;
+            while (!Input.GetMouseButtonDown(0))
+            {
+                yield return null;
+            }
+            foreach (GameObject p in panels)
+                p.SetActive(false);
+        }
+        tutorial = false;
     }
 
     private void StartGame()
@@ -114,6 +133,8 @@ public class CardGameController : MonoBehaviour, IService
         InitConsumables();
         ShuffleDeck();
         DrawCard(startCountOfCards);
+        if (tutorial)
+            StartCoroutine(Tutorial());
     }
 
     public void EndTurn()

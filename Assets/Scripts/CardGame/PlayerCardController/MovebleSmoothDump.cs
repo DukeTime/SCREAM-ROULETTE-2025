@@ -25,8 +25,10 @@ public class MovebleSmoothDump : MonoBehaviour
     private static Vector3 SELECTED_SCALE = new Vector3(1.92f * 1.5f, 2.7072f * 1.5f, 1);
     
     private Collider2D _triggerCollider;
+    private CardGameController _cardGameController;
     void Start()
     {
+        _cardGameController = ServiceLocator.Current.Get<CardGameController>();
         cardConroller = GetComponent<Card>();
         _triggerCollider = GetComponent<Collider2D>();
         targetPosition = transform.position;
@@ -104,11 +106,14 @@ public class MovebleSmoothDump : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if (isDraggingAllowed)
+        if (!_cardGameController.tutorial)
         {
-            isHolding = true;
-            StartCoroutine(ServiceLocator.Current.Get<HandController>().ArrangeCards());
+            if (isDraggingAllowed)
+            {
+                isHolding = true;
+                StartCoroutine(ServiceLocator.Current.Get<HandController>().ArrangeCards());
 
+            }
         }
     }
 
