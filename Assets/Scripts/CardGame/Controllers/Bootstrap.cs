@@ -10,7 +10,7 @@ public class Bootstrap: MonoBehaviour
         if (GameStateManager.Instance != null)
             GameStateManager.Instance.Reset();
         
-        PlayerData.Deck = PlayerData.StartDeck;
+        PlayerData.Deck = new List<CardData>(PlayerData.StartDeck);
         PlayerData.Consumables = new List<ConsumableData>();
         
         SceneManager.LoadScene(5);

@@ -12,7 +12,7 @@ public static class PlayerData
         // AllConsumables.All.Find(m => m.id == "1"),
         // AllConsumables.All.Find(m => m.id == "3"),
     };
-    public static List<ConsumableData> Consumables = StartConsumables;
+    public static List<ConsumableData> Consumables = new List<ConsumableData>(StartConsumables);
     
     public static List<CardData> StartDeck = new List<CardData>()
     {
@@ -114,5 +114,5 @@ public static class PlayerData
         },
     };
     
-    public static List<CardData> Deck = StartDeck;
+    public static List<CardData> Deck = new List<CardData>(StartDeck);
 }

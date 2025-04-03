@@ -44,7 +44,7 @@ public class CardGameController : MonoBehaviour, IService
         _enemyCardsController = ServiceLocator.Current.Get<EnemyCardsController>();
         _enemyCardsController.OnAllCardsDefeated += Victory;
         
-        PlayerData.Deck = PlayerData.StartDeck;
+        PlayerData.Deck = new List<CardData>(PlayerData.StartDeck);
         
         LoadDeckCards();
         InitConsumables();
@@ -182,6 +182,104 @@ public class CardGameController : MonoBehaviour, IService
 
     private void LoadDeckCards()
     {
-        cardsInDeckData = PlayerData.Deck;
+        cardsInDeckData = new List<CardData>()
+    {
+        new CardData()
+        {
+            cardInfo = new CardInfo()
+            {
+                value = 2,
+                suit = CardInfo.CardSuit.Red
+            }
+        },
+        new CardData()
+        {
+            cardInfo = new CardInfo()
+            {
+                value = 3,
+                suit = CardInfo.CardSuit.Red
+            }
+        },
+        new CardData()
+        {
+            cardInfo = new CardInfo()
+            {
+                value = 4,
+                suit = CardInfo.CardSuit.Red
+            }
+        },
+        new CardData()
+        {
+            cardInfo = new CardInfo()
+            {
+                value = 5,
+                suit = CardInfo.CardSuit.Red
+            }
+        },
+        new CardData()
+        {
+            cardInfo = new CardInfo()
+            {
+                value = 2,
+                suit = CardInfo.CardSuit.Black
+            }
+        },
+        new CardData()
+        {
+            cardInfo = new CardInfo()
+            {
+                value = 3,
+                suit = CardInfo.CardSuit.Black
+            }
+        },
+        new CardData()
+        {
+            cardInfo = new CardInfo()
+            {
+                value = 4,
+                suit = CardInfo.CardSuit.Black
+            }
+        },
+        new CardData()
+        {
+            cardInfo = new CardInfo()
+            {
+                value = 5,
+                suit = CardInfo.CardSuit.Black
+            }
+        },
+        new CardData()
+        {
+            cardInfo = new CardInfo()
+            {
+                value = 2,
+                suit = CardInfo.CardSuit.Trump
+            }
+        },
+        new CardData()
+        {
+            cardInfo = new CardInfo()
+            {
+                value = 3,
+                suit = CardInfo.CardSuit.Trump
+            }
+        },
+        new CardData()
+        {
+            cardInfo = new CardInfo()
+            {
+                value = 4,
+                suit = CardInfo.CardSuit.Trump
+            }
+        },
+        new CardData()
+        {
+            cardInfo = new CardInfo()
+            {
+                value = 5,
+                suit = CardInfo.CardSuit.Trump
+            }
+        },
+    };;
     }
 }

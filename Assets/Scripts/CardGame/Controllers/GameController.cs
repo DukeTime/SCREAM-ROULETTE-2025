@@ -22,11 +22,13 @@ public class GameStateManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            Instance.Reset();
         }
         else
         {
             Destroy(gameObject);
         }
+        
     }
 
     public void Reset()

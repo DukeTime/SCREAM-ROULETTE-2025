@@ -2031,23 +2031,18 @@ MonoBehaviour:
       bonus: 1
     - id: 
       cardInfo:
-        value: 7
+        value: 5
         suit: 1
       bonus: 1
     - id: 
       cardInfo:
-        value: 12
-        suit: 1
-      bonus: 1
-    - id: 
-      cardInfo:
-        value: 7
+        value: 6
         suit: 0
       bonus: 1
     - id: 
       cardInfo:
-        value: 7
-        suit: 2
+        value: 13
+        suit: 1
       bonus: 1
   cardDefaultPrefab: {fileID: 2195166058263279351, guid: 956cbae511558944dbadc87feb4faf3a, type: 3}
 --- !u!4 &1113215233

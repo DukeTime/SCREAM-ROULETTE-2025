@@ -16,9 +16,9 @@ public class Altar : MonoBehaviour
     private void Start()
     {
         if (id < GameStateManager.Instance.altars)
-        {
             gameObject.SetActive(false);
-        }
+        else
+            gameObject.SetActive(true);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
